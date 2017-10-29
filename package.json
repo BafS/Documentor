@@ -1,0 +1,17 @@
+{
+  "name": "documentator",
+  "version": "0.0.1",
+  "description": "Documentation generator",
+  "main": "src",
+  "license": "MIT",
+  "dependencies": {
+    "handlebars": "^4.0.11",
+    "js-yaml": "^3.10.0",
+    "markdown-it": "^8.4.0"
+  },
+  "devDependencies": {
+    "eslint": "^4.10.0",
+    "eslint-config-airbnb-base": "^12.1.0",
+    "eslint-plugin-import": "^2.8.0"
+  }
+}
