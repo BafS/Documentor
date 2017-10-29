@@ -4,7 +4,8 @@ const Page = require('./Page');
 const { getBasename } = require('./helpers');
 
 module.exports = class Documentator {
-  constructor(config = {}) {
+  constructor(dir = './', config = {}) {
+    this.dir = dir;
     this.config = config;
   }
 
@@ -24,15 +25,15 @@ module.exports = class Documentator {
       if (stats.isFile()) {
         if (name.slice(-3) === '.md') {
           // Page
-          arr.push(Page.pageCreator(target, fs.readFileSync(target, 'utf8')));
+          const re = new RegExp(`${this.dir}\\/*`, 'g');
+          arr.push(Page.pageCreator(target.replace(re, ''), fs.readFileSync(target, 'utf8')));
         }
       } else if (stats.isDirectory()) {
         const children = this.pagesTree(target);
         const indexBase = children.findIndex(page => getBasename(page.slug) === 'index');
-        const page = children[indexBase] || null;
+        const page = children[indexBase] || Page.pageCreator(name);
 
-        if (page) {
-          // page.slug = name;
+        if (children[indexBase]) {
           children.splice(indexBase, 1);
         }
 
@@ -59,7 +60,7 @@ module.exports = class Documentator {
    * Generate documentation
    */
   generate() {
-    const pagesTree = this.pagesTree('./docs');
+    const pagesTree = this.pagesTree(this.dir);
     return this.generateHtml(pagesTree);
   }
 };

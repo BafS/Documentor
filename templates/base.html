@@ -56,16 +56,6 @@ a {
   color: #d5dae6;
   overflow: hidden;
 }
-.content {
-  width: 100%;
-  margin-left: 270px;
-  overflow-y: auto;
-  -webkit-overflow-scrolling: touch;
-  height: 100%;
-  position: relative;
-  z-index: 3;
-  padding: 0 2rem;
-}
 .sidebar ul {
   list-style: none;
   margin: 0;
@@ -108,15 +98,34 @@ a {
   padding: 0 15px;
   padding-bottom: 15px;
   /* margin-bottom: 5px; */
-  border-bottom: 1px solid #d5dae6;
+  border-bottom: 1px solid rgba(255,255,255,.8);
 }
 
-.content {font-family:Merriweather,'Book Antiqua',Georgia,'Century Schoolbook',serif;font-size:1em;line-height:1.6875em}
-.content h1,.content h2,.content h3,.content h4,.content h5,.content h6 {font-family:Lato,sans-serif;font-weight:700;line-height:1.5em;word-wrap:break-word}
-.content h1 {font-size:2em;margin:1em 0 .5em}
-.content h1.section-heading {margin:1.5em 0 .5em}
-.content h1 small {font-weight:300}.content h1 a.view-source {font-size:1.2rem}.content h2 {font-size:1.6em;margin:1em 0 .5em;font-weight:700}
-.content h3 {font-size:1.375em;margin:1em 0 .5em;font-weight:700}
+.content {
+  font-family: Merriweather,'Book Antiqua',Georgia,'Century Schoolbook',serif;
+  font-size: 1em;
+  line-height: 1.6875em;
+  width: 100%;
+  margin-left: 270px;
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+  height: 100%;
+  position: relative;
+  z-index: 3;
+  padding: 0 2rem;
+}
+.content h1,.content h2,.content h3,.content h4,.content h5,.content h6 {
+  font-family: Lato, sans-serif;
+  font-weight: 700;
+  line-height: 1.5em;
+  word-wrap: break-word;
+}
+.content h1 {font-size:2em; margin:1em 0 .5em}
+.content h1.heading {color: #777; margin: 1em 0 .5em}
+.content h1 small {font-weight:300}
+.content h1 a.view-source {font-size:1.2rem}
+.content h2 {font-size:1.6em;margin:1em 0 .5em;font-weight:700}
+.content h3 {font-size:1.375em; margin:1em 0 .5em; font-weight:700}
 .content a {color:#000;text-decoration:none;text-shadow:.03em 0 #fff,-.03em 0 #fff,0 .03em #fff,0 -.03em #fff,.06em 0 #fff,-.06em 0 #fff,.09em 0 #fff,-.09em 0 #fff,.12em 0 #fff,-.12em 0 #fff,.15em 0 #fff,-.15em 0 #fff;background-image:linear-gradient(#fff,#fff),linear-gradient(#fff,#fff),linear-gradient(#000,#000);background-size:.05em 1px,.05em 1px,1px 1px;background-repeat:no-repeat,no-repeat,repeat-x;background-position:0 90%,100% 90%,0 90%}
 .content a:selection {text-shadow:.03em 0 #b4d5fe,-.03em 0 #b4d5fe,0 .03em #b4d5fe,0 -.03em #b4d5fe,.06em 0 #b4d5fe,-.06em 0 #b4d5fe,.09em 0 #b4d5fe,-.09em 0 #b4d5fe,.12em 0 #b4d5fe,-.12em 0 #b4d5fe,.15em 0 #b4d5fe,-.15em 0 #b4d5fe;background:#b4d5fe}
 .content a:-moz-selection {text-shadow:.03em 0 #b4d5fe,-.03em 0 #b4d5fe,0 .03em #b4d5fe,0 -.03em #b4d5fe,.06em 0 #b4d5fe,-.06em 0 #b4d5fe,.09em 0 #b4d5fe,-.09em 0 #b4d5fe,.12em 0 #b4d5fe,-.12em 0 #b4d5fe,.15em 0 #b4d5fe,-.15em 0 #b4d5fe;background:#b4d5fe}
@@ -131,6 +140,10 @@ a {
 .content a.no-underline:active,.content a.no-underline:focus,.content a.no-underline:hover,.content a.no-underline:visited,.content pre a:active,.content pre a:focus,.content pre a:hover,.content pre a:visited {color:#9768d1;text-decoration:none}
 .content code {font-weight:400;background-color:#f7f9fc;vertical-align:baseline;border-radius:2px;padding:.1em .2em;border:1px solid #d2ddee}
 .content pre {margin:1.5em 0}
+
+.content .page {
+  padding-top: 10px;
+}
   </style>
 </head>
 <body>
@@ -162,13 +175,13 @@ a {
     <section class="content">
       {{#each pages}}
       <div class="page" id="{{slug}}">
-        <h1>{{title}}</h1>
+        <h1 class="heading">{{title}}</h1>
         {{{content}}}
       </div>
 
       {{#each children}}
       <div class="page" id="{{slug}}">
-        <h1>{{title}}</h1>
+        <h1 class="heading">{{title}}</h1>
         {{{content}}}
       </div>
       {{/each}}

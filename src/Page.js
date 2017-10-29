@@ -15,13 +15,16 @@ module.exports = class Page {
   /**
    * Page creator
    *
+   * @static
    * @param {string} filename
-   * @param {string} content
+   * @param {string} [content='']  content
    * @returns Page
    */
-  static pageCreator(filename, content) {
+  static pageCreator(filename, content = '') {
+    // Split '---' to get the optional yaml header
     const parts = content.split(/-{3,}/, 3);
-    const slug = filename.replace('./', '').slice(0, -3);
+
+    const slug = filename.replace('./', '').replace(/\.[^/.]+$/, '');
     const basename = getBasename(filename);
     const title = beautifyName(basename);
 
