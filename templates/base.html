@@ -55,6 +55,7 @@ a {
   background: #373f52;
   color: #d5dae6;
   overflow: hidden;
+  transition: transform ease-in-out .25s;
 }
 .sidebar ul {
   list-style: none;
@@ -63,17 +64,13 @@ a {
 }
 .sidebar ul > li > ul a {
   padding-left: 40px;
+  height: 38px;
+  line-height: 38px;
 }
 .sidebar ul li {
   margin: 0;
   padding: 0;
   line-height: 0;
-  /* height: 32px; */
-  /* padding: 0 10px; */
-  /* height: 30px; */
-  /* line-height: 30px; */
-  /* width: 100%; */
-  /* background: #0a0; */
 }
 .sidebar a {
   display: inline-block;
@@ -81,28 +78,35 @@ a {
   white-space: nowrap;
   overflow: hidden;
   width: 100%;
-  /* background: #00a; */
   color: #d5dae6;
   padding: 0 15px;
-  height: 38px;
-  line-height: 38px;
+  height: 40px;
+  line-height: 40px;
   text-decoration: none;
   margin: 0;
 }
 .sidebar a:hover {
   color: #fff;
   background: rgba(255,255,255,.08);
-  /* border-bottom: 1px solid #fff; */
 }
 .sidebar .header {
   padding: 0 15px;
   padding-bottom: 15px;
-  /* margin-bottom: 5px; */
-  border-bottom: 1px solid rgba(255,255,255,.8);
+  border-bottom: 1px solid rgba(255,255,255,.6);
+}
+
+.full-width .sidebar {
+  transform: translateX(-270px);
+  will-change: transform;
+}
+
+.full-width .content {
+  transform: translateX(-270px);
+  will-change: transform;
 }
 
 .content {
-  font-family: Merriweather,'Book Antiqua',Georgia,'Century Schoolbook',serif;
+  font-family: Merriweather, 'Book Antiqua', Georgia, 'Century Schoolbook', serif;
   font-size: 1em;
   line-height: 1.6875em;
   width: 100%;
@@ -113,6 +117,7 @@ a {
   position: relative;
   z-index: 3;
   padding: 0 2rem;
+  transition: transform ease-in-out .25s;
 }
 .content h1,.content h2,.content h3,.content h4,.content h5,.content h6 {
   font-family: Lato, sans-serif;
@@ -143,6 +148,28 @@ a {
 
 .content .page {
   padding-top: 10px;
+  opacity: 1;
+  transition: all .2s linear;
+  /* height: 100%; */
+}
+
+.content .page.hide {
+  display: none;
+  opacity: 0;
+  /* height: 0; */
+}
+
+.tools .toggle {
+  background: transparent;
+  float: right;
+  position: absolute;
+  left: 6px;
+  top: 5px;
+  font-size: 12pt;
+  height: 30px;
+  width: 30px;
+  font-weight: 300;
+  color: #373f52;
 }
   </style>
 </head>
@@ -173,6 +200,10 @@ a {
     </section>
 
     <section class="content">
+      <div class="tools">
+        <button class="toggle">☰</button>
+      </div>
+
       {{#each pages}}
       <div class="page" id="{{slug}}">
         <h1 class="heading">{{title}}</h1>
@@ -188,5 +219,8 @@ a {
       {{/each}}
     </section>
   </div>
+  <script>
+    {{{javascript}}}
+  </script>
 </body>
 </html>

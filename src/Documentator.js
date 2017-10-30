@@ -1,4 +1,5 @@
 const fs = require('fs');
+const babel = require('babel-core');
 const Handlebars = require('handlebars');
 const Page = require('./Page');
 const { getBasename } = require('./helpers');
@@ -51,9 +52,14 @@ module.exports = class Documentator {
    * @returns {string} Html
    */
   generateHtml(pages) {
+    const javascript = babel.transformFileSync('./templates/index.js', {
+      minified: true,
+      presets: ['es2015'],
+    }).code;
+
     const templateRaw = fs.readFileSync('./templates/base.html', 'utf8');
     const template = Handlebars.compile(templateRaw);
-    return template({ ...this.config, pages });
+    return template({ ...this.config, pages, javascript });
   }
 
   /**
