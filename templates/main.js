@@ -13,7 +13,7 @@ const loadPage = (hash) => {
 };
 
 const main = document.querySelector('.main');
-document.querySelector('button.toggle').onclick = () => {
+document.querySelector('button.toggle-sidebar').onclick = () => {
   if (main.classList !== null && main.classList.contains('full-width')) {
     main.classList.remove('full-width');
   } else {

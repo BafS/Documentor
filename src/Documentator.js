@@ -1,8 +1,10 @@
 const fs = require('fs');
 const babel = require('babel-core');
 const Handlebars = require('handlebars');
+const postcss = require('postcss');
+const cssNext = require('postcss-cssnext');
 const Page = require('./Page');
-const { getBasename } = require('./helpers');
+const { getBasename, getExtension } = require('./helpers');
 
 module.exports = class Documentator {
   constructor(dir = './', config = {}) {
@@ -23,13 +25,11 @@ module.exports = class Documentator {
       const target = `${pathname}/${name}`;
 
       const stats = fs.statSync(target);
-      if (stats.isFile()) {
-        if (name.slice(-3) === '.md') {
-          // Page
-          const re = new RegExp(`${this.dir}\\/*`, 'g');
-          arr.push(Page.pageCreator(target.replace(re, ''), fs.readFileSync(target, 'utf8')));
-        }
-      } else if (stats.isDirectory()) {
+      if (stats.isFile() && name.slice(-3) === '.md' && name.substr(0, 2) !== '__') {
+        // Page
+        const re = new RegExp(`${this.dir}\\/*`, 'g');
+        arr.push(Page.pageCreator(target.replace(re, ''), fs.readFileSync(target, 'utf8')));
+      } else if (stats.isDirectory() && name.substr(0, 2) !== '__') {
         const children = this.pagesTree(target);
         const indexBase = children.findIndex(page => getBasename(page.slug) === 'index');
         const page = children[indexBase] || Page.pageCreator(name);
@@ -51,15 +51,37 @@ module.exports = class Documentator {
    * @param {Page[]} pages
    * @returns {string} Html
    */
-  generateHtml(pages) {
-    const javascript = babel.transformFileSync('./templates/index.js', {
+  async generateHtml(pages) {
+    const javascript = babel.transformFileSync('./templates/main.js', {
       minified: true,
       presets: ['es2015'],
     }).code;
 
+    let logo;
+    if (this.config.logo && fs.existsSync(`${this.dir}/${this.config.logo}`)) {
+      const data = fs.readFileSync(`${this.dir}/${this.config.logo}`);
+      const ext = getExtension(this.config.logo).substr(1);
+      const base64data = Buffer.from(data).toString('base64');
+      logo = `data:image/${ext};base64,${base64data}`;
+    }
+
+    let css;
+    if (fs.existsSync('templates/style.css')) {
+      const style = fs.readFileSync('templates/style.css', 'utf8');
+      css = await postcss([cssNext]).process(style).css;
+    }
+
     const templateRaw = fs.readFileSync('./templates/base.html', 'utf8');
     const template = Handlebars.compile(templateRaw);
-    return template({ ...this.config, pages, javascript });
+    return template({
+      ...this.config,
+      logo,
+      pages,
+      css,
+      javascript,
+    });
+  }
+
   }
 
   /**

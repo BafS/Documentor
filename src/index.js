@@ -13,5 +13,6 @@ if (fs.existsSync('./docs/config.yml')) {
 }
 
 const d = new Documentator('./docs', config);
-const html = d.generate();
-console.log(html);
+d.generate().then(html => {
+  console.log(html);
+});
