@@ -24,7 +24,7 @@ module.exports = class Page {
     // Split '---' to get the optional yaml header
     const parts = content.split(/-{3,}/, 3);
 
-    const slug = filename.replace('./', '').replace(/\.[^/.]+$/, '');
+    const slug = filename.replace(/^.\//, '').replace(/\.[^/.]+$/, '');
     const basename = getBasename(filename);
     const title = beautifyName(basename);
 

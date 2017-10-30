@@ -1,9 +1,29 @@
+/**
+ * Get the current hash (without the leading #)
+ * @returns {string}
+ */
 const currentHash = () => window.location.hash.substr(1) || '';
 
-const pagesEl = [...document.querySelectorAll('.content .page')];
+/**
+ * Get all pages element
+ * @returns {Element[]}
+ */
+const getPageElements = () => [...document.querySelectorAll('.content .page')];
 
-const loadPage = (hash) => {
-  pagesEl.forEach((page, i) => {
+const pageEls = getPageElements();
+
+/**
+ * Get current page index from an hash string
+ * @param {number} hash
+ */
+const getCurrentPageIndex = hash => pageEls.findIndex((page, i) => page.id === hash || (i === 0 && hash === ''));
+
+/**
+ * Display class from hash string
+ * @param {string} hash
+ */
+const showPageFromHash = (hash) => {
+  pageEls.forEach((page, i) => {
     if (page.id === hash || (i === 0 && hash === '')) {
       page.classList.remove('hide');
     } else {
@@ -12,17 +32,43 @@ const loadPage = (hash) => {
   });
 };
 
-const main = document.querySelector('.main');
-document.querySelector('button.toggle-sidebar').onclick = () => {
-  if (main.classList !== null && main.classList.contains('full-width')) {
-    main.classList.remove('full-width');
+/**
+ * Toggle class for an element
+ * @param {Element} element
+ * @param {string} className
+ */
+const toggleClass = (element, className) => {
+  if (element.classList !== null && element.classList.contains(className)) {
+    element.classList.remove(className);
   } else {
-    main.classList.add('full-width');
+    element.classList.add(className);
   }
 };
 
-window.onhashchange = () => {
-  loadPage(currentHash());
+const main = document.querySelector('.main');
+document.querySelector('button.toggle-sidebar').onclick = () => {
+  toggleClass(main, 'full-width');
 };
 
-loadPage(currentHash());
+document.querySelector('button.toggle-light').onclick = () => {
+  toggleClass(main, 'dark');
+};
+
+document.querySelector('button.next-page').onclick = () => {
+  const nextIndex = Math.min(getCurrentPageIndex(currentHash()) + 1, pageEls.length - 1);
+  window.location.hash = `#${pageEls[nextIndex].id}`;
+};
+
+document.querySelector('button.previous-page').onclick = () => {
+  const prevIndex = Math.max(0, (getCurrentPageIndex(currentHash()) - 1));
+  window.location.hash = `#${pageEls[prevIndex].id}`;
+};
+
+document.querySelector('.tools').classList.remove('hide');
+
+// Listen for hash change
+window.onhashchange = () => {
+  showPageFromHash(currentHash());
+};
+
+showPageFromHash(currentHash());

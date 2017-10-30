@@ -4,7 +4,7 @@
   --mainColor: #373f52;
   --secondaryColor: #d5dae6;
 }
-*,:after,:before {
+*, :after, :before {
   box-sizing: inherit;
 }
 html, body {
@@ -26,7 +26,7 @@ a {
   display:-ms-flex;
   display:flex;
   -ms-flex-pack:end;
-  justify-content:flex-end
+  justify-content: flex-end;
 }
 .sidebar {
   display: flex;
@@ -53,6 +53,7 @@ a {
   list-style: none;
   margin: 0;
   padding: 0;
+  overflow-y: auto;
 }
 .sidebar ul > li > ul a {
   padding-left: 40px;
@@ -126,7 +127,7 @@ a {
   word-wrap: break-word;
 }
 .content h1 {font-size:2em; margin:1em 0 .5em}
-.content h1.heading {color: #777; margin: 1em 0 .5em}
+.content h1.heading {color: #666; margin: 1em 0 .5em}
 .content h1 small {font-weight:300}
 .content h1 a.view-source {font-size:1.2rem}
 .content h2 {font-size:1.6em;margin:1em 0 .5em;font-weight:700}
@@ -159,10 +160,19 @@ a {
 }
 
 .tools {
-  opacity: .8;
+  opacity: .6;
   top: 4px;
   left: 5px;
   position: absolute;
+  transition: opacity .15s linear;
+}
+
+.tools:hover {
+  opacity: .9;
+}
+
+.tools.hide {
+  display: none;
 }
 
 .tools button {
@@ -179,21 +189,28 @@ a {
   line-height: 0;
 }
 
-.tools .toggle-sidebar {
-  /* left: 5px; */
-}
-.tools .toggle-light {
-}
-
 .raindrop.icon {
   color: var(--mainColor);
   position: absolute;
-  margin-left: 2px;
-  margin-top: -4px;
+  margin-left: 3px;
+  margin-top: -3px;
   width: 10px;
   height: 10px;
   border: solid 1px currentColor;
   border-radius: 6px 6px 6px 0;
   -webkit-transform: rotate(135deg);
           transform: rotate(135deg);
+}
+
+.dark .content {
+  color: var(--secondaryColor);
+  background: color(var(--mainColor) lightness(15%));
+}
+
+.dark .content code {
+  background-color: color(var(--mainColor) lightness(20%));
+}
+
+.dark .tools button, .dark .tools button .icon {
+  color: var(--secondaryColor);
 }
