@@ -23,13 +23,16 @@ const getCurrentPageIndex = hash => pageEls.findIndex((page, i) => page.id === h
  * @param {string} hash
  */
 const showPageFromHash = (hash) => {
+  let activeIndex = 0;
   pageEls.forEach((page, i) => {
     if (page.id === hash || (i === 0 && hash === '')) {
+      activeIndex = i;
       page.classList.remove('hide');
     } else {
       page.classList.add('hide');
     }
   });
+  return activeIndex;
 };
 
 /**
@@ -121,15 +124,25 @@ const sidebarLinks = document.querySelectorAll('.sidebar ul li a');
  * Highlight sidebar link
  * @param {number} index
  */
-const highlightSidebarIndex = (index) => {
-  sidebarLinks[index].classList.add('highlight');
+const addClassSidebarIndex = (index, className) => {
+  sidebarLinks[index].classList.add(className);
 };
 
 /**
  * Remove highlights from sidebar
  */
-const removeHighlightSidebar = () => {
-  sidebarLinks.forEach(link => link.classList.remove('highlight'));
+const removeClassesSidebar = (className) => {
+  sidebarLinks.forEach(link => link.classList.remove(className));
+};
+
+const toggleActiveLinkSidebar = (index) => {
+  sidebarLinks.forEach((link, i) => {
+    if (i === index) {
+      link.classList.add('active');
+    } else {
+      link.classList.remove('active');
+    }
+  });
 };
 
 const main = document.querySelector('.main');
@@ -156,16 +169,16 @@ document.querySelector('.tools').classList.remove('hide');
 const searchInputEl = document.querySelector('.search-input');
 searchInputEl.classList.remove('hide');
 
-const els = document.querySelectorAll('.page');
+const highlightClass = 'highlight';
 
 searchInputEl.addEventListener('keypress', (e) => {
   const key = e.which || e.keyCode;
   if (key === 13) {
     removeHighlight([...document.querySelectorAll('.content .highlight')]);
-    removeHighlightSidebar();
-    els.forEach((el, pIndex) => {
+    removeClassesSidebar(highlightClass);
+    pageEls.forEach((el, pIndex) => {
       if (highlightWord(el, searchInputEl.value)) {
-        highlightSidebarIndex(pIndex);
+        addClassSidebarIndex(pIndex, highlightClass);
       }
     });
   }
@@ -174,14 +187,19 @@ searchInputEl.addEventListener('keypress', (e) => {
 searchInputEl.addEventListener('keyup', (e) => {
   const key = e.which || e.keyCode;
   if (key !== 13 && searchInputEl.value.length < 1) {
-    removeHighlight([...document.querySelectorAll('.content .highlight')]);
-    removeHighlightSidebar();
+    removeHighlight([...document.querySelectorAll(`.content .${highlightClass}`)]);
+    removeClassesSidebar(highlightClass);
   }
 });
 
-// Listen for hash change
-window.onhashchange = () => {
-  showPageFromHash(currentHash());
+const showPageFromCurrentHash = () => {
+  const index = showPageFromHash(currentHash());
+  toggleActiveLinkSidebar(index);
 };
 
-showPageFromHash(currentHash());
+// Listen for hash change
+window.onhashchange = () => {
+  showPageFromCurrentHash();
+};
+
+showPageFromCurrentHash();

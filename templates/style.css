@@ -13,10 +13,10 @@ html, body {
   width: 100%;
 }
 body {
-  margin:0;
-  font-size:16px;
-  line-height:1.6875em;
-  font-family:Lato, sans-serif;
+  margin: 0;
+  font-size: 16px;
+  line-height: 1.6875em;
+  font-family: Lato, sans-serif;
 }
 a {
   transition: all .2s linear;
@@ -51,15 +51,15 @@ a {
 }
 .sidebar ul.menu {
   margin-bottom: 43px;
+  overflow-y: auto;
 }
 .sidebar ul {
   list-style: none;
   margin: 0;
   padding: 0;
-  overflow-y: auto;
 }
 .sidebar ul > li > ul a {
-  padding-left: 40px;
+  padding-left: 34px;
   height: 38px;
   line-height: 38px;
 }
@@ -69,21 +69,26 @@ a {
   line-height: 0;
 }
 .sidebar a {
-  display: inline-block;
+  display: block;
   text-overflow: ellipsis;
   white-space: nowrap;
   overflow: hidden;
   width: 100%;
   color: var(--secondaryColor);
-  padding: 0 15px;
+  padding: 0 14px;
   height: 40px;
   line-height: 40px;
   text-decoration: none;
   margin: 0;
+  border-left: 2px solid transparent;
+}
+.sidebar a.active {
+  background: rgba(255, 255, 255, .04);
+  border-left: 2px solid rgba(255, 255, 255, .6);
 }
 .sidebar a:hover {
   color: #fff;
-  background: rgba(255,255,255,.08);
+  background: rgba(255, 255, 255, .08);
 }
 .sidebar .header {
   padding: 0 15px;
@@ -100,15 +105,22 @@ a {
 }
 
 .sidebar .search-input {
+  font-family: Lato, sans-serif;
   color: var(--secondaryColor);
   background-color: color(var(--mainColor) lightness(21%));
   border: 0;
   padding: 12px 10px;
   font-size: 15px;
+  font-weight: normal;
   position: absolute;
   bottom: 0;
   width: 100%;
   transition: box-shadow .15s ease;
+  outline: none;
+}
+
+.sidebar .search-input:hover {
+  background-color: color(var(--mainColor) lightness(20%));
 }
 
 .sidebar .search-input:focus {
@@ -181,7 +193,7 @@ a {
 .tools {
   opacity: .6;
   top: 4px;
-  left: 5px;
+  left: 6px;
   position: absolute;
   transition: opacity .15s linear;
 }
@@ -202,10 +214,17 @@ a {
   width: 30px;
   margin: 0;
   background: transparent;
-  margin-right: 5px;
+  margin-right: 4px;
   font-weight: 300;
   border: none;
   line-height: 0;
+  transition: background .2s ease;
+  outline: none;
+}
+
+.tools button:hover {
+  background: rgba(0, 0, 0, .05);
+  cursor: pointer;
 }
 
 .raindrop.icon {
@@ -236,4 +255,12 @@ a {
 
 .highlight {
   background: rgb(255, 252, 53, .5);
+}
+
+.sidebar a.highlight {
+  background: rgb(255, 252, 53, .4);
+}
+
+.sidebar .highlight:hover {
+  background: rgb(255, 252, 53, .6);
 }
