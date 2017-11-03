@@ -20,7 +20,7 @@
         <span>{{version}}</span>
       </div>
 
-      <ul>
+      <ul class="menu">
         {{#each pages}}
         {{#if children}}
         <li>
@@ -36,10 +36,12 @@
         {{/if}}
         {{/each}}
       </ul>
+
+      <input class="search-input hide" placeholder="search"></input>
     </section>
 
     <section class="content">
-      <div class="tools">
+      <div class="tools hide">
         <button class="toggle-sidebar">☰</button>
         <button class="toggle-light">
           <div class="raindrop icon"></div>
