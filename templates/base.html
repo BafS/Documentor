@@ -4,6 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <meta name="generator" content="Documentator (https://github.com/BafS/Documentator)" />
   <title>{{title}}</title>
   <style>
     {{{css}}}
@@ -63,6 +64,14 @@
       </div>
       {{/each}}
       {{/each}}
+
+      <footer class="footer">
+      {{#if footer}}
+        {{{footer}}}
+      {{else}}
+        Build with <a href="https://github.com/BafS/Documentator">Documentator</a> {{documentator_version}}
+      {{/if}}
+      </footer>
     </section>
   </div>
   <script>
