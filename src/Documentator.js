@@ -57,7 +57,7 @@ module.exports = class Documentator {
    * Html generator
    *
    * @param {Page[]} pages
-   * @returns {string} Html
+   * @returns {Promise<string>} Html
    */
   async generateHtml(pages) {
     const javascript = babel.transformFileSync('./templates/main.js', {
@@ -95,8 +95,16 @@ module.exports = class Documentator {
   /**
    * Generate documentation
    */
-  generate() {
+  async generate(outputFile = null) {
     const pagesTree = this.pagesTree(this.dir);
-    return this.generateHtml(pagesTree);
+    const out = await this.generateHtml(pagesTree);
+
+    if (!outputFile) {
+      process.stdout.write(out);
+      return out;
+    }
+
+    fs.writeFileSync(outputFile, out);
+    return true;
   }
 };
