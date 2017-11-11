@@ -60,10 +60,15 @@ module.exports = class Documentator {
    * @returns {Promise<string>} Html
    */
   async generateHtml(pages) {
-    const javascript = babel.transformFileSync('./templates/main.js', {
-      minified: true,
-      presets: ['es2015'],
-    }).code;
+    const templatePath = `./templates/${this.config.template || 'alchemy'}`;
+
+    let javascript;
+    if (fs.existsSync(`${templatePath}/main.js`)) {
+      javascript = babel.transformFileSync(`${templatePath}/main.js`, {
+        minified: true,
+        presets: ['es2015'],
+      }).code;
+    }
 
     let logo;
     if (this.config.logo && fs.existsSync(`${this.dir}/${this.config.logo}`)) {
@@ -74,12 +79,12 @@ module.exports = class Documentator {
     }
 
     let css;
-    if (fs.existsSync('templates/style.css')) {
-      const style = fs.readFileSync('templates/style.css', 'utf8');
+    if (fs.existsSync(`${templatePath}/style.css`)) {
+      const style = fs.readFileSync(`${templatePath}/style.css`, 'utf8');
       css = await postcss([cssNext]).process(style).css;
     }
 
-    const templateRaw = fs.readFileSync('./templates/base.html', 'utf8');
+    const templateRaw = fs.readFileSync(`${templatePath}/base.html`, 'utf8');
     const template = Handlebars.compile(templateRaw);
     return template({
       ...this.config,
