@@ -5,6 +5,13 @@ const { beautifyName, getBasename } = require('./helpers');
 const md = new MarkdownIt();
 
 module.exports = class Page {
+  /**
+   * Constructor
+   * @param {string} title
+   * @param {string} slug
+   * @param {string} content
+   * @param {array} options
+   */
   constructor(title, slug, content, options = []) {
     this.title = title;
     this.slug = slug;
@@ -31,7 +38,7 @@ module.exports = class Page {
     if (parts.length === 3 && parts[0] === '') {
       const options = yaml.safeLoad(parts[1]);
 
-      return new Page(options.title || title, slug, parts[2].trim(), options);
+      return new Page(options.title || title, slug, parts[2], options);
     }
 
     return new Page(title, slug, content);

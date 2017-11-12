@@ -1,6 +1,7 @@
 const fs = require('fs');
 const Page = require('./Page');
 const { getBasename, getExtension } = require('./helpers');
+const HtmlGenerator = require('./generators/HtmlGenerator');
 
 const generators = {
   html: HtmlGenerator,
