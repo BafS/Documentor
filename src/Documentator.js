@@ -1,10 +1,11 @@
 const fs = require('fs');
-const babel = require('babel-core');
-const Handlebars = require('handlebars');
-const postcss = require('postcss');
-const cssNext = require('postcss-cssnext');
 const Page = require('./Page');
 const { getBasename, getExtension } = require('./helpers');
+
+const generators = {
+  html: HtmlGenerator,
+};
+
 
 module.exports = class Documentator {
   constructor(dir = './', config = {}) {
@@ -15,6 +16,7 @@ module.exports = class Documentator {
     this.dir = dir;
     this.config = {
       ...config,
+      template: config.template || 'alchemy',
       ...coreConfig,
     };
   }
@@ -54,62 +56,30 @@ module.exports = class Documentator {
   }
 
   /**
-   * Html generator
-   *
-   * @param {Page[]} pages
-   * @returns {Promise<string>} Html
-   */
-  async generateHtml(pages) {
-    const templatePath = `./templates/${this.config.template || 'alchemy'}`;
-
-    let javascript;
-    if (fs.existsSync(`${templatePath}/main.js`)) {
-      javascript = babel.transformFileSync(`${templatePath}/main.js`, {
-        minified: true,
-        presets: ['es2015'],
-      }).code;
-    }
-
-    let logo;
-    if (this.config.logo && fs.existsSync(`${this.dir}/${this.config.logo}`)) {
-      const data = fs.readFileSync(`${this.dir}/${this.config.logo}`);
-      const ext = getExtension(this.config.logo).substr(1);
-      const base64data = Buffer.from(data).toString('base64');
-      logo = `data:image/${ext};base64,${base64data}`;
-    }
-
-    let css;
-    if (fs.existsSync(`${templatePath}/style.css`)) {
-      const style = fs.readFileSync(`${templatePath}/style.css`, 'utf8');
-      css = await postcss([cssNext]).process(style).css;
-    }
-
-    const templateRaw = fs.readFileSync(`${templatePath}/base.html`, 'utf8');
-    const template = Handlebars.compile(templateRaw);
-    return template({
-      ...this.config,
-      logo,
-      pages,
-      css,
-      javascript,
-    });
-  }
-
-  }
-
-  /**
    * Generate documentation
    */
   async generate(outputFile = null) {
     const pagesTree = this.pagesTree(this.dir);
-    const out = await this.generateHtml(pagesTree);
 
-    if (!outputFile) {
-      process.stdout.write(out);
-      return out;
+    const type = getExtension(outputFile || '').substr(1) || 'html';
+    if (generators[type]) {
+      const generator = new generators[type](this.dir, this.config);
+
+      if (!generator.generate) {
+        throw Error(`The '${type}' generator is not valid (no 'generate' method in ${generator.constructor.name})`);
+      }
+
+      const out = await generator.generate(pagesTree);
+
+      if (!outputFile) {
+        process.stdout.write(out);
+        return out;
+      }
+
+      fs.writeFileSync(outputFile, out);
+      return true;
     }
 
-    fs.writeFileSync(outputFile, out);
-    return true;
+    return false;
   }
 };

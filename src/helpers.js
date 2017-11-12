@@ -1,3 +1,4 @@
+const fs = require('fs');
 const path = require('path');
 
 const helpers = {
@@ -11,6 +12,28 @@ const helpers = {
   },
   getExtension: filename => path.extname(filename),
   getBasename: filename => path.basename(filename, path.extname(filename)),
+  exists: async filePath => (
+    new Promise((resolve, reject) => {
+      fs.stat(filePath, (err) => {
+        if (err) {
+          reject(err);
+          return;
+        }
+        resolve();
+      });
+    })
+  ),
+  readFile: async (filePath, options) => (
+    new Promise((resolve, reject) => {
+      fs.readFile(filePath, options, (err, data) => {
+        if (err) {
+          reject(err);
+          return;
+        }
+        resolve(data);
+      });
+    })
+  ),
 };
 
 module.exports = helpers;
