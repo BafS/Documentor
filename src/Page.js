@@ -1,6 +1,6 @@
 const yaml = require('js-yaml');
 const MarkdownIt = require('markdown-it');
-const { beautifyName, getBasename } = require('./helpers');
+const { beautifyName, getBasename, strToSlug } = require('./helpers');
 
 const md = new MarkdownIt();
 
@@ -31,7 +31,7 @@ module.exports = class Page {
     // Split '---' to get the optional yaml header
     const parts = content.split(/-{3,}/, 3);
 
-    const slug = filename.replace(/^.\//, '').replace(/\.[^/.]+$/, '');
+    const slug = strToSlug(filename);
     const basename = getBasename(filename);
     const title = beautifyName(basename);
 

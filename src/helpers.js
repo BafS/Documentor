@@ -2,6 +2,7 @@ const fs = require('fs');
 const path = require('path');
 
 const helpers = {
+  strToSlug: str => str.replace(/^.\//, '').replace(/\.[^/.]+$/, '').replace(/ /g, ''),
   beautifySlug: slug => slug.replace(/^[0-9]+_(.+)/, '$1'),
   beautifyName: (name) => {
     if (name.toUpperCase() === name) {
@@ -14,12 +15,12 @@ const helpers = {
   getBasename: filename => path.basename(filename, path.extname(filename)),
   exists: async filePath => (
     new Promise((resolve, reject) => {
-      fs.stat(filePath, (err) => {
+      fs.stat(filePath, (err, stats) => {
         if (err) {
           reject(err);
           return;
         }
-        resolve();
+        resolve(stats);
       });
     })
   ),
