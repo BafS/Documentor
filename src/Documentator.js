@@ -10,15 +10,20 @@ const generators = {
 
 module.exports = class Documentator {
   constructor(dir = './', config = {}) {
-    const coreConfig = {
+    const defaultConfig = {
+      extensions: ['md', 'markdown'],
+      template: 'alchemy',
+    };
+
+    const systemConfig = {
       documentator_version: '0.0.1',
     };
 
     this.dir = dir;
     this.config = {
+      ...defaultConfig,
       ...config,
-      template: config.template || 'alchemy',
-      ...coreConfig,
+      ...systemConfig,
     };
   }
 
@@ -35,7 +40,7 @@ module.exports = class Documentator {
       const target = `${pathname}/${name}`;
 
       const stats = fs.statSync(target);
-      if (stats.isFile() && name.slice(-3) === '.md' && name.substr(0, 1) !== '_') {
+      if (stats.isFile() && this.config.extensions.indexOf(getExtension(name)) !== -1 && name.substr(0, 1) !== '_') {
         // Page
         const re = new RegExp(`${this.dir}\\/*`, 'g');
         arr.push(Page.pageCreator(target.replace(re, ''), fs.readFileSync(target, 'utf8')));
@@ -62,7 +67,7 @@ module.exports = class Documentator {
   async generate(outputFile = null) {
     const pagesTree = this.pagesTree(this.dir);
 
-    const type = getExtension(outputFile || '').substr(1) || 'html';
+    const type = getExtension(outputFile || '') || 'html';
     if (generators[type]) {
       const generator = new generators[type](this.dir, this.config);
 

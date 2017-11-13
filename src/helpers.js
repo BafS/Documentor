@@ -15,7 +15,7 @@ const helpers = {
       .replace(/_/g, ' ')
       .replace(/([a-z])([A-Z])/g, (match, p1, p2) => `${p1} ${p2}`)
   ),
-  getExtension: filename => path.extname(filename),
+  getExtension: filename => path.extname(filename).substr(1),
   getBasename: filename => path.basename(filename, path.extname(filename)),
   exists: async filePath => (
     new Promise((resolve, reject) => {
