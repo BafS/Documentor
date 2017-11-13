@@ -1,6 +1,6 @@
 const yaml = require('js-yaml');
 const MarkdownIt = require('markdown-it');
-const { beautifyName, getBasename, strToSlug } = require('./helpers');
+const { humanizesSlug, getBasename, strToSlug } = require('./helpers');
 
 const md = new MarkdownIt();
 
@@ -24,23 +24,24 @@ module.exports = class Page {
    *
    * @static
    * @param {string} filename
-   * @param {string} [content='']  content
+   * @param {string} [data=''] data
    * @returns Page
    */
-  static pageCreator(filename, content = '') {
-    // Split '---' to get the optional yaml header
-    const parts = content.split(/-{3,}/, 3);
-
+  static pageCreator(filename, data = '') {
     const slug = strToSlug(filename);
-    const basename = getBasename(filename);
-    const title = beautifyName(basename);
+
+    // Split '---' to get the optional yaml header
+    const parts = data.split(/-{3,}/, 3);
 
     if (parts.length === 3 && parts[0] === '') {
-      const options = yaml.safeLoad(parts[1]);
+      const [, title, content] = parts;
+      const options = yaml.safeLoad(title);
 
-      return new Page(options.title || title, slug, parts[2], options);
+      return new Page(options.title || title, slug, content, options);
     }
 
-    return new Page(title, slug, content);
+    const title = humanizesSlug(getBasename(filename));
+
+    return new Page(title, slug, data);
   }
 };
