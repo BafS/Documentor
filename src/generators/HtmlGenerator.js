@@ -14,7 +14,16 @@ module.exports = class HtmlGenerator {
   constructor(dir, config) {
     this.dir = dir;
     this.config = config;
-    this.templatePath = `./templates/${config.template}`;
+
+    if (config.template.substr(0, 2) === './' || config.template.substr(0, 1) === '/') {
+      this.templatePath = config.template;
+    } else {
+      this.templatePath = `./templates/${config.template}`;
+    }
+
+    if (!fs.existsSync(`${this.templatePath}/base.html`)) {
+      throw Error(`Template '${this.templatePath}' is not a valid template`);
+    }
   }
 
   /**
@@ -76,10 +85,10 @@ module.exports = class HtmlGenerator {
   async generate(pages) {
     const [templateRaw, logo, icon, css, javascript] = await Promise.all([
       readFile(`${this.templatePath}/base.html`, 'utf8'),
-      this.generateImage(this.config.logo), // 5ms
-      this.generateImage(this.config.icon), // 5ms
-      this.generateStyle(), // 200ms
-      this.generateJavascript(), // 80ms
+      this.generateImage(this.config.logo),
+      this.generateImage(this.config.icon),
+      this.generateStyle(),
+      this.generateJavascript(),
     ]);
 
     const template = Handlebars.compile(templateRaw);
