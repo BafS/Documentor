@@ -4,8 +4,11 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <meta name="generator" content="Documentator (https://github.com/BafS/Documentator)" />
-  <title>{{title}}</title>
+  <meta name="generator" content="Documentator v{{documentator_version}} (https://github.com/BafS/Documentator)" />
+  <title>{{name}}</title>
+  {{#if icon}}
+  <link rel="icon" href="{{{icon}}}" />
+  {{/if}}
   <style>
     {{{css}}}
   </style>
@@ -15,7 +18,7 @@
     <section class="sidebar">
       <div class="header">
         {{#if logo}}
-        <img class="logo" src="{{logo}}" />
+        <img class="logo" src="{{{logo}}}" />
         {{/if}}
         <h1>{{name}}</h1>
         {{#if version}}

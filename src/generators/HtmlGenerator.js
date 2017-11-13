@@ -52,12 +52,14 @@ module.exports = class HtmlGenerator {
   }
 
   /**
-   * Generate logo
+   * Generate an inline image
+   * @param {string} imagePath
+   * @returns {Promise<string>} base64 image data
    */
-  async generateLogo() {
-    if (this.config.logo && fs.existsSync(`${this.dir}/${this.config.logo}`)) {
-      const data = fs.readFileSync(`${this.dir}/${this.config.logo}`);
-      const ext = getExtension(this.config.logo).substr(1);
+  async generateImage(imagePath) {
+    if (imagePath && fs.existsSync(`${this.dir}/${imagePath}`)) {
+      const data = await readFile(`${this.dir}/${imagePath}`);
+      const ext = getExtension(imagePath);
       const base64data = Buffer.from(data).toString('base64');
       return `data:image/${ext};base64,${base64data}`;
     }
@@ -72,11 +74,12 @@ module.exports = class HtmlGenerator {
    * @returns {Promise<string>} Html
    */
   async generate(pages) {
-    const [templateRaw, logo, css, javascript] = await Promise.all([
+    const [templateRaw, logo, icon, css, javascript] = await Promise.all([
       readFile(`${this.templatePath}/base.html`, 'utf8'),
-      this.generateLogo(),
-      this.generateStyle(),
-      this.generateJavascript(),
+      this.generateImage(this.config.logo), // 5ms
+      this.generateImage(this.config.icon), // 5ms
+      this.generateStyle(), // 200ms
+      this.generateJavascript(), // 80ms
     ]);
 
     const template = Handlebars.compile(templateRaw);
@@ -84,6 +87,7 @@ module.exports = class HtmlGenerator {
     return template({
       ...this.config,
       logo,
+      icon,
       pages,
       css,
       javascript,
