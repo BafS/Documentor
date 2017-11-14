@@ -2,18 +2,19 @@
 
 const fs = require('fs');
 const yaml = require('js-yaml');
-const Documentor = require('../src');
 const yargs = require('yargs');
+const Documentor = require('../src');
 
 console.time('time generation');
 
 const { argv } = yargs
-  .usage('Usage: $0 -i <doc files> [options]')
-  .example('$0 -i docs -o project.html', 'generate "project.html" from "docs" folder')
-  .example('$0 -i docs -c conf.yml', 'output html to STDOUT from "docs" folder and read the configuration file "conf.yml"')
+  .usage('Usage: $0 <entry folder> [options]')
+  .example('$0 docs -o project.html', 'Generate "project.html" from "docs" folder')
+  .example('$0 docs -c conf.yml', 'Output html to STDOUT from "docs" folder and read the configuration file "conf.yml"')
+  .example('$0 docs -o out.html -w', 'Watch the "docs" folder and regenerate "out.html" on change')
   .alias('i', 'input')
   .nargs('i', 1)
-  .describe('i', 'Input folder')
+  .describe('i', 'Input folder (optional flag)')
   .alias('o', 'output')
   .nargs('o', 1)
   .describe('o', 'Write in file')
@@ -27,9 +28,16 @@ const { argv } = yargs
   .alias('v', 'verbose')
   .nargs('v', 0)
   .describe('v', 'Configuration file')
-  .demandOption(['i'])
   .help('h')
   .alias('h', 'help');
+
+if (!argv.input) {
+  argv.input = argv._.shift();
+}
+
+if (!argv.input) {
+  yargs.showHelp();
+}
 
 const confFile = argv.config || `${argv.input}/_config.yml`;
 let config = {};

@@ -18,43 +18,6 @@ const output = (outputFile, out) => {
   return true;
 };
 
-// const getGenerator = (type) => {
-//   switch (type) {
-//     case 'html':
-//       return HtmlGenerator
-
-//       break;
-
-//     default:
-//       break;
-//   }
-// }
-
-// const path = require('path');
-// const HtmlWebpackPlugin = require('html-webpack-plugin');
-// const webpack = require('webpack'); // to access webpack runtime
-// // const configuration = require('./webpack.config.js');
-
-// const config = {
-//   entry: './path/to/my/entry/file.js',
-//   output: {
-//     filename: 'my-first-webpack.bundle.js',
-//     path: path.resolve(__dirname, 'dist'),
-//   },
-//   module: {
-//     rules: [
-//       {
-//         test: /\.(js|jsx)$/,
-//         use: 'babel-loader',
-//       },
-//     ],
-//   },
-//   plugins: [
-//     new webpack.optimize.UglifyJsPlugin(),
-//     new HtmlWebpackPlugin({ template: './src/index.html' }),
-//   ],
-// };
-
 module.exports = class Documentor {
   constructor(dir = './', config = {}) {
     const defaultConfig = {
@@ -63,7 +26,7 @@ module.exports = class Documentor {
     };
 
     const systemConfig = {
-      documentator_version: '0.0.1',
+      documentor_version: '0.0.2',
     };
 
     this.dir = dir;
