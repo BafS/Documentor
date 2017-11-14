@@ -12,6 +12,7 @@ const { argv } = yargs
   .example('$0 docs -o project.html', 'Generate "project.html" from "docs" folder')
   .example('$0 docs -c conf.yml', 'Output html to STDOUT from "docs" folder and read the configuration file "conf.yml"')
   .example('$0 docs -o out.html -w', 'Watch the "docs" folder and regenerate "out.html" on change')
+  .example('$0 docs -o out.html --var.name "My Project"', 'Generate "out.html" with custom variables')
   .alias('i', 'input')
   .nargs('i', 1)
   .describe('i', 'Input folder (optional flag)')
@@ -25,6 +26,9 @@ const { argv } = yargs
   .alias('w', 'watch')
   .nargs('w', 0)
   .describe('w', 'Watch docs files with partial generation')
+  .option('config')
+  .alias('var', 'variable')
+  .describe('var', 'Set or override config variable(s)')
   .alias('v', 'verbose')
   .nargs('v', 0)
   .describe('v', 'Configuration file')
@@ -52,24 +56,30 @@ if (fs.existsSync(confFile)) {
   console.log(`Configuration file "${confFile}" does not exists`);
 }
 
-const d = new Documentor(argv.input, config);
+if (argv.var) {
+  // Override the config with user variables
+  config = {
+    ...config,
+    ...argv.var,
+  };
+}
 
-if (argv.input) {
-  if (argv.watch) {
-    console.log(`Watch files in '${argv.input}'`);
-    d.watch(argv.output, (type, pathname) => {
-      if (pathname) {
-        console.log(`[${type}] ${pathname}`);
-      } else {
-        console.log(type);
-      }
-    });
-  } else {
-    const res = d.generate(argv.output);
-    if (argv.verbose) {
-      res.then(() => {
-        console.timeEnd('time generation');
-      });
+const documentor = new Documentor(argv.input, config);
+
+if (argv.watch) {
+  console.log(`Watch files in '${argv.input}'`);
+  documentor.watch(argv.output, (type, pathname) => {
+    if (pathname) {
+      console.log(`[${type}] ${pathname}`);
+    } else {
+      console.log(type);
     }
+  });
+} else {
+  const res = documentor.generate(argv.output);
+  if (argv.verbose) {
+    res.then(() => {
+      console.timeEnd('time generation');
+    });
   }
 }

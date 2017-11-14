@@ -9,6 +9,7 @@
 - **`-c`**, **`--config`**: Configuration file
 - **`-w`**, **`--watch`**: Watch docs files with partial generation
 - **`-v`**, **`--verbose`**: Configuration file
+- **`--var`**, **`--variable`**: Set or override config variable(s)
 - **`-h`**, **`--help`**: Show help
 
 #### Examples
@@ -23,6 +24,12 @@ Output html to STDOUT from `./docs` folder and read the configuration file `conf
 
 ```bash
 documentor docs -c conf.yml
+```
+
+Generate "out.html" with a custom name and footer
+
+```bash
+documentor ./docs -o out.html --var.name "My Project" --var.footer "(c) Project 1.0"
 ```
 
 Watch the "docs" folder and regenerate "out.html" on change
