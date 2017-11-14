@@ -50,7 +50,7 @@ a {
   transition: transform ease-in-out .25s;
 }
 .sidebar ul.menu {
-  margin-bottom: 43px;
+  margin-bottom: 44px;
   overflow-y: auto;
 }
 .sidebar ul {
@@ -94,7 +94,7 @@ a {
 .sidebar .header {
   padding: 0 15px;
   padding-bottom: 15px;
-  border-bottom: 1px solid rgba(255, 255, 255, .6);
+  border-bottom: 1px solid rgba(255, 255, 255, .5);
 }
 
 .sidebar .logo {
@@ -110,7 +110,7 @@ a {
   color: var(--secondaryColor);
   background-color: color(var(--mainColor) lightness(21%));
   border: 0;
-  padding: 12px 10px;
+  padding: 14px;
   font-size: 15px;
   font-weight: normal;
   position: absolute;
@@ -125,7 +125,7 @@ a {
 }
 
 .sidebar .search-input:focus {
-  box-shadow: 0 0 0 1px rgba(255, 255, 255, .6) inset;
+  box-shadow: 0 0 0 1px rgba(255, 255, 255, .5) inset;
 }
 
 .full-width .sidebar {

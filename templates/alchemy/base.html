@@ -12,6 +12,9 @@
   <style>
     {{{css}}}
   </style>
+  {{#each htmlHeader}}
+    {{{this}}}
+  {{/each}}
 </head>
 <body>
   <div class="main">
@@ -82,5 +85,8 @@
   <script>
     {{{javascript}}}
   </script>
+  {{#each htmlBody}}
+    {{{this}}}
+  {{/each}}
 </body>
 </html>

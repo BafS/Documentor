@@ -2,7 +2,7 @@
 
 > A super intuitive doc generator from Markdown
 
-### Command Line Usage
+## Command Line Usage
 
 - **`-i`**, **`--input`**: Input folder (optional flag)
 - **`-o`**, **`--output`**: Write in file
@@ -12,7 +12,7 @@
 - **`--var`**, **`--variable`**: Set or override config variable(s)
 - **`-h`**, **`--help`**: Show help
 
-#### Examples
+### Examples
 
 Generate `project.html` from `./docs` folder
 
@@ -38,7 +38,19 @@ Watch the "docs" folder and regenerate "out.html" on change
 documentor docs -o out.html -w
 ```
 
-### Dev
+## Configuration
+
+- **`name`** – Name of the project. It will be the main title for the html page.
+- **`version`** – Version of the project.
+- **`logo`** – Main logo of the project.
+- **`icon`** – Icon of the project, will typically be used for the favicon of the htmlpage.
+- **`footer`** – The content of the footer.
+- **`template`** – By default Documentator uses the *alchemy* template. To use a custom template path, start with `./` for a relative path or `/` for an absolute path.
+  - *Example* – `template: ./mytemplate`
+- **`htmlHeader`** – List of html element to add in the header
+- **`htmlBody`** – List of html element to add in the body
+
+## Dev
 
 ```bash
 yarn install
@@ -46,4 +58,4 @@ yarn install
 
 // TODO
 
-#### Test
+### Test
