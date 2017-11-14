@@ -13,6 +13,7 @@ const helpers = {
     helpers
       .removeLeadingNumber(name)
       .replace(/_/g, ' ')
+      .trim()
       .replace(/([a-z])([A-Z])/g, (match, p1, p2) => `${p1} ${p2}`)
   ),
   getExtension: filename => path.extname(filename).substr(1),
