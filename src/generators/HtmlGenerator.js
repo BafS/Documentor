@@ -2,6 +2,7 @@ const fs = require('fs');
 const babel = require('babel-core');
 const Handlebars = require('handlebars');
 const postcss = require('postcss');
+const path = require('path');
 const cssNext = require('postcss-cssnext');
 const { getExtension, readFile } = require('../helpers');
 
@@ -18,7 +19,8 @@ module.exports = class HtmlGenerator {
     if (config.template.substr(0, 2) === './' || config.template.substr(0, 1) === '/') {
       this.templatePath = config.template;
     } else {
-      this.templatePath = `./templates/${config.template}`;
+      const basePath = path.join(__dirname, '..', '..');
+      this.templatePath = `${basePath}/templates/${config.template}`;
     }
 
     if (!fs.existsSync(`${this.templatePath}/base.html`)) {
