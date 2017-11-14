@@ -1,10 +1,21 @@
 const fs = require('fs');
+const chokidar = require('chokidar');
 const Page = require('./Page');
 const { getBasename, getExtension } = require('./helpers');
 const HtmlGenerator = require('./generators/HtmlGenerator');
 
 const generators = {
   html: HtmlGenerator,
+};
+
+const output = (outputFile, out) => {
+  if (!outputFile) {
+    process.stdout.write(out);
+    return out;
+  }
+
+  fs.writeFileSync(outputFile, out);
+  return true;
 };
 
 
@@ -29,7 +40,7 @@ module.exports = class Documentator {
 
   /**
    * Return an array of Page as a tree
-   *
+   * @private
    * @param {string} pathname
    * @param {Page[]} [arr=[]]
    * @returns {Page[]}
@@ -62,30 +73,74 @@ module.exports = class Documentator {
   }
 
   /**
-   * Generate documentation
+   * Returns the Generator object
+   * @private
+   * @param {string} outputFile
+   * @returns {HtmlGenerator}
    */
-  async generate(outputFile = null) {
-    const pagesTree = this.pagesTree(this.dir);
-
+  generatorObject(outputFile) {
     const type = getExtension(outputFile || '') || 'html';
     if (generators[type]) {
-      const generator = new generators[type](this.dir, this.config);
+      const generatorObj = new generators[type](this.dir, this.config);
 
-      if (!generator.generate) {
-        throw Error(`The '${type}' generator is not valid (no 'generate' method in ${generator.constructor.name})`);
+      if (!generatorObj.generator) {
+        throw Error(`The '${type}' generator is not valid (no 'generator' method in ${generatorObj.constructor.name})`);
       }
 
-      const out = await generator.generate(pagesTree);
-
-      if (!outputFile) {
-        process.stdout.write(out);
-        return out;
-      }
-
-      fs.writeFileSync(outputFile, out);
-      return true;
+      return generatorObj;
     }
 
     return false;
+  }
+
+  /**
+   * Watch source files to do partial generation when possible
+   * @param {string} outputFile
+   * @param {(type: string, pathname: string, generation: Promise<void>) => {}} callback
+   */
+  async watch(outputFile, callback) {
+    const watcher = chokidar.watch([this.dir], {
+      ignored: /(^|[/\\])\../,
+      persistent: true,
+      ignoreInitial: true,
+    });
+
+    const generatorObj = this.generatorObject(outputFile);
+    const generatorFn = await generatorObj.generator();
+    const regenerate = () => generatorFn(this.pagesTree(this.dir));
+
+    const onChange = (type, pathname = null) => {
+      const generation = new Promise((resolve, reject) => {
+        const out = regenerate();
+        if (output(outputFile, out)) {
+          resolve();
+          return;
+        }
+        reject();
+      });
+
+      callback(type, pathname, generation);
+    };
+
+    onChange('First generation');
+
+    watcher
+      .on('add', pathname => onChange('add', pathname))
+      .on('change', pathname => onChange('change', pathname))
+      .on('unlink', pathname => onChange('unlink', pathname));
+  }
+
+  /**
+   * Generate documentation
+   * @returns {Promise<string>}
+   */
+  async generate(outputFile = null) {
+    const generatorObj = this.generatorObject(outputFile);
+
+    const pagesTree = this.pagesTree(this.dir);
+
+    const out = (await generatorObj.generator())(pagesTree);
+
+    return output(outputFile, out);
   }
 };

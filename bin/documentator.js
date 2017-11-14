@@ -19,6 +19,9 @@ const { argv } = yargs
   .alias('c', 'config')
   .nargs('c', 1)
   .describe('c', 'Configuration file')
+  .alias('w', 'watch')
+  .nargs('w', 0)
+  .describe('w', 'Watch docs files with partial generation')
   .demandOption(['i'])
   .help('h')
   .alias('h', 'help');
@@ -39,5 +42,16 @@ if (fs.existsSync(confFile)) {
 const d = new Documentator(argv.input, config);
 
 if (argv.input) {
-  d.generate(argv.output);
+  if (argv.watch) {
+    console.log(`Watch files in '${argv.input}'`);
+    d.watch(argv.output, (type, pathname) => {
+      if (pathname) {
+        console.log(`[${type}] ${pathname}`);
+      } else {
+        console.log(type);
+      }
+    });
+  } else {
+    d.generate(argv.output);
+  }
 }

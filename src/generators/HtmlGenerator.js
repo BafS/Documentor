@@ -9,7 +9,7 @@ module.exports = class HtmlGenerator {
   /**
    * Constructor
    * @param {string} dir
-   * @param {object} config
+   * @param {{}} config
    */
   constructor(dir, config) {
     this.dir = dir;
@@ -28,6 +28,8 @@ module.exports = class HtmlGenerator {
 
   /**
    * Generate javascript
+   * @private
+   * @returns {Promise<string>}
    */
   async generateJavascript() {
     if (fs.existsSync(`${this.templatePath}/main.js`)) {
@@ -50,6 +52,8 @@ module.exports = class HtmlGenerator {
 
   /**
    * Generate style
+   * @private
+   * @returns {Promise<string>}
    */
   async generateStyle() {
     if (fs.existsSync(`${this.templatePath}/style.css`)) {
@@ -62,6 +66,7 @@ module.exports = class HtmlGenerator {
 
   /**
    * Generate an inline image
+   * @private
    * @param {string} imagePath
    * @returns {Promise<string>} base64 image data
    */
@@ -77,29 +82,36 @@ module.exports = class HtmlGenerator {
   }
 
   /**
-   * Html generator
-   *
-   * @param {Page[]} pages
-   * @returns {Promise<string>} Html
+   * Get template data
+   * @private
+   * @returns {{}}
    */
-  async generate(pages) {
-    const [templateRaw, logo, icon, css, javascript] = await Promise.all([
-      readFile(`${this.templatePath}/base.html`, 'utf8'),
+  async templateData() {
+    const [logo, icon, css, javascript] = await Promise.all([
       this.generateImage(this.config.logo),
       this.generateImage(this.config.icon),
       this.generateStyle(),
       this.generateJavascript(),
     ]);
 
-    const template = Handlebars.compile(templateRaw);
-
-    return template({
+    return {
       ...this.config,
       logo,
       icon,
-      pages,
       css,
       javascript,
-    });
+    };
+  }
+
+  /**
+   * Html generator
+   * @returns {Promise<(pages: Page[]) => string>}
+   */
+  async generator() {
+    const templateRaw = await readFile(`${this.templatePath}/base.html`, 'utf8');
+    const template = Handlebars.compile(templateRaw);
+    const data = await this.templateData();
+
+    return pages => template({ ...data, pages });
   }
 };
