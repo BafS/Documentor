@@ -2,7 +2,7 @@
 
 const fs = require('fs');
 const yaml = require('js-yaml');
-const Documentator = require('../src/Documentator');
+const Documentor = require('../src');
 const yargs = require('yargs');
 
 console.time('time generation');
@@ -44,7 +44,7 @@ if (fs.existsSync(confFile)) {
   console.log(`Configuration file "${confFile}" does not exists`);
 }
 
-const d = new Documentator(argv.input, config);
+const d = new Documentor(argv.input, config);
 
 if (argv.input) {
   if (argv.watch) {

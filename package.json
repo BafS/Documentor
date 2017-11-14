@@ -1,11 +1,11 @@
 {
-  "name": "documentator",
-  "version": "0.0.1",
+  "name": "documentor",
+  "version": "0.0.2",
   "description": "Documentation generator",
   "main": "src",
   "license": "MIT",
   "bin": {
-    "documentator": "./bin/documentator.js"
+    "documentor": "./bin/documentor.js"
   },
   "scripts": {
     "test": "mocha"

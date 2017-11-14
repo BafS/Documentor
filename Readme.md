@@ -1,10 +1,12 @@
-# Documentator
+# Documentor
 
 > A super intuitive doc generator from Markdown
 
 ### Command Line Usage
 
-// TODO
+```bash
+documentor -i docs -o out.html
+```
 
 ### Dev
 
