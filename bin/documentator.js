@@ -5,6 +5,8 @@ const yaml = require('js-yaml');
 const Documentator = require('../src/Documentator');
 const yargs = require('yargs');
 
+console.time('time generation');
+
 const { argv } = yargs
   .usage('Usage: $0 -i <doc files> [options]')
   .example('$0 -i docs -o project.html', 'generate "project.html" from "docs" folder')
@@ -22,6 +24,9 @@ const { argv } = yargs
   .alias('w', 'watch')
   .nargs('w', 0)
   .describe('w', 'Watch docs files with partial generation')
+  .alias('v', 'verbose')
+  .nargs('v', 0)
+  .describe('v', 'Configuration file')
   .demandOption(['i'])
   .help('h')
   .alias('h', 'help');
@@ -52,6 +57,11 @@ if (argv.input) {
       }
     });
   } else {
-    d.generate(argv.output);
+    const res = d.generate(argv.output);
+    if (argv.verbose) {
+      res.then(() => {
+        console.timeEnd('time generation');
+      });
+    }
   }
 }
