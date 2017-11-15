@@ -19,6 +19,11 @@ const output = (outputFile, out) => {
 };
 
 module.exports = class Documentor {
+  /**
+   * Documentor constructor
+   * @param {string} dir
+   * @param {{}} config
+   */
   constructor(dir = './', config = {}) {
     const defaultConfig = {
       extensions: ['md', 'markdown'],

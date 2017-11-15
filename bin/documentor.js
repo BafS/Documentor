@@ -41,6 +41,7 @@ if (!argv.input) {
 
 if (!argv.input) {
   yargs.showHelp();
+  process.exit();
 }
 
 const confFile = argv.config || `${argv.input}/_config.yml`;
