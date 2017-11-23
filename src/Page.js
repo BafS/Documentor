@@ -21,7 +21,6 @@ module.exports = class Page {
 
   /**
    * Page creator
-   *
    * @static
    * @param {string} filename
    * @param {string} [data=''] data
@@ -34,10 +33,10 @@ module.exports = class Page {
     const parts = data.split(/-{3,}/, 3);
 
     if (parts.length === 3 && parts[0] === '') {
-      const [, title, content] = parts;
-      const options = yaml.safeLoad(title);
+      const [, optionsYaml, content] = parts;
+      const options = yaml.safeLoad(optionsYaml);
 
-      return new Page(options.title || title, slug, content, options);
+      return new Page(options.title || optionsYaml, slug, content, options);
     }
 
     const title = humanizesSlug(getBasename(filename));

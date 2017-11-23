@@ -24,18 +24,17 @@ module.exports = class Documentor {
    * @param {string} dir
    * @param {{}} config
    */
-  constructor(dir = './', config = {}) {
+  constructor(dir = '.', config = {}) {
     const defaultConfig = {
       extensions: ['md', 'markdown'],
       template: 'alchemy',
     };
 
     const systemConfig = {
-      documentor_version: '0.0.5',
+      documentor_version: '0.0.6',
     };
 
-    // Add the last slash if needed
-    this.dir = `${dir.replace(/\/+$/, '')}/`;
+    this.dir = dir.replace(/\/+$/, '/');
     this.config = {
       ...defaultConfig,
       ...config,
@@ -58,8 +57,12 @@ module.exports = class Documentor {
       const stats = fs.statSync(target);
       if (stats.isFile() && this.config.extensions.indexOf(getExtension(name)) !== -1 && name.substr(0, 1) !== '_') {
         // Page
-        const re = new RegExp(`${this.dir}\\/*`, 'g');
-        arr.push(Page.pageCreator(target.replace(re, ''), fs.readFileSync(target, 'utf8')));
+        let pageTarget = target;
+        if (target.indexOf(this.dir) === 0) {
+          const re = new RegExp(`^${this.dir}\\/*`, '');
+          pageTarget = target.replace(re, '');
+        }
+        arr.push(Page.pageCreator(pageTarget, fs.readFileSync(target, 'utf8')));
       } else if (stats.isDirectory() && name.substr(0, 1) !== '_') {
         const children = this.pagesTree(target);
         const indexBase = children.findIndex(page => getBasename(page.slug) === 'index');
