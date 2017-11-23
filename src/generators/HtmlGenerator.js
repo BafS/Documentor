@@ -38,7 +38,7 @@ module.exports = class HtmlGenerator {
       return new Promise((resolve, reject) => {
         babel.transformFile(`${this.templatePath}/main.js`, {
           minified: true,
-          presets: ['es2015'],
+          presets: ['env'],
         }, (err, res) => {
           if (err) {
             reject(err);
