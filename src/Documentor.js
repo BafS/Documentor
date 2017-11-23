@@ -31,10 +31,11 @@ module.exports = class Documentor {
     };
 
     const systemConfig = {
-      documentor_version: '0.0.2',
+      documentor_version: '0.0.5',
     };
 
-    this.dir = dir;
+    // Add the last slash if needed
+    this.dir = `${dir.replace(/\/+$/, '')}/`;
     this.config = {
       ...defaultConfig,
       ...config,
