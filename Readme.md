@@ -2,6 +2,18 @@
 
 > A super intuitive doc generator from Markdown
 
+<center>
+  <img style="max-width: 600px" src="https://i.imgur.com/wErMEKf.png" />
+</center>
+
+# Installation
+
+```bash
+npm -g i documentor
+```
+
+or with yarn: `yarn global add documentor`
+
 ## Command Line Usage
 
 - **`-i`**, **`--input`**: Input folder (optional flag)
@@ -56,6 +68,8 @@ documentor docs -o out.html -w
 yarn install
 ```
 
-// TODO
-
 ### Test
+
+```bash
+yarn test
+```
