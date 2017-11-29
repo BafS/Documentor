@@ -1,9 +1,11 @@
 # Documentor
 
-> A super intuitive doc generator from Markdown
+![](https://i.imgur.com/6Gjb6Gz.png)
+
+> A super intuitive doc generator from Markdown files
 
 <center>
-  <img style="max-width: 600px" src="https://i.imgur.com/wErMEKf.png" />
+  <img width="600" src="https://i.imgur.com/wErMEKf.png" />
 </center>
 
 # Installation
@@ -12,7 +14,11 @@
 npm -g i documentor
 ```
 
-or with yarn: `yarn global add documentor`
+or for yarn users: `yarn global add documentor`
+
+# Documentation
+
+Please check the [**documentation**](http://bafs.github.io/Documentor) for more details.
 
 ## Command Line Usage
 
@@ -50,18 +56,6 @@ Watch the "docs" folder and regenerate "out.html" on change
 documentor docs -o out.html -w
 ```
 
-## Configuration
-
-- **`name`** – Name of the project. It will be the main title for the html page.
-- **`version`** – Version of the project.
-- **`logo`** – Main logo of the project.
-- **`icon`** – Icon of the project, will typically be used for the favicon of the htmlpage.
-- **`footer`** – The content of the footer.
-- **`template`** – By default Documentator uses the *alchemy* template. To use a custom template path, start with `./` for a relative path or `/` for an absolute path.
-  - *Example* – `template: ./mytemplate`
-- **`htmlHeader`** – List of html element to add in the header
-- **`htmlBody`** – List of html element to add in the body
-
 ## Dev
 
 ```bash
@@ -73,3 +67,7 @@ yarn install
 ```bash
 yarn test
 ```
+
+TODO
+
+[] Embed images from markdown
