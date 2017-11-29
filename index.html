@@ -1,0 +1,557 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <meta name="generator" content="Documentor v0.1.0 (https://github.com/BafS/Documentor)" />
+  <title>Documentor</title>
+  <link rel="icon" href="data:image/png;base64,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" />
+  <style>
+    @import url(https://fonts.googleapis.com/css?family=Lato:300,700|Merriweather:300italic,300|Inconsolata:400,700);
+*, :after, :before {
+  -webkit-box-sizing: inherit;
+          box-sizing: inherit;
+}
+html, body {
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  height: 100%;
+  width: 100%;
+}
+body {
+  margin: 0;
+  font-size: 16px;
+  line-height: 1.6875em;
+  font-family: Lato, sans-serif;
+}
+a {
+  -webkit-transition: all .2s linear;
+  transition: all .2s linear;
+}
+.main {
+  display: -ms-flexbox;
+  display: -ms-flex;
+  display: -webkit-box;
+  display: flex;
+  -ms-flex-pack: end;
+  -webkit-box-pack: end;
+          justify-content: flex-end;
+}
+.sidebar {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  min-height: 0;
+  -ms-flex-direction: column;
+      flex-direction: column;
+  width: 270px;
+  height: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 4;
+  font-size: 15px;
+  line-height: 18px;
+  background: #373f52;
+  color: #d5dae6;
+  overflow: hidden;
+  -webkit-transition: -webkit-transform ease-in-out .25s;
+  transition: -webkit-transform ease-in-out .25s;
+  transition: transform ease-in-out .25s;
+  transition: transform ease-in-out .25s, -webkit-transform ease-in-out .25s;
+}
+.sidebar ul.menu {
+  margin-bottom: 44px;
+  overflow-y: auto;
+}
+.sidebar ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+.sidebar ul > li > ul a {
+  padding-left: 34px;
+  height: 38px;
+  line-height: 38px;
+}
+.sidebar ul li {
+  margin: 0;
+  padding: 0;
+  line-height: 0;
+}
+.sidebar ul a {
+  display: block;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+  width: 100%;
+  color: #d5dae6;
+  padding: 0 14px;
+  height: 40px;
+  line-height: 40px;
+  text-decoration: none;
+  margin: 0;
+  border-left: 2px solid transparent;
+}
+.sidebar ul a.active {
+  background: rgba(255, 255, 255, .04);
+  border-left: 2px solid rgba(255, 255, 255, .6);
+}
+.sidebar a:hover, .sidebar .header a:hover {
+  color: #fff;
+}
+.sidebar ul a:hover {
+  background: rgba(255, 255, 255, .08);
+}
+.sidebar .header a {
+  color: #d5dae6;
+  text-decoration: none;
+}
+.sidebar .header {
+  padding: 0 15px;
+  padding-bottom: 15px;
+  border-bottom: 1px solid rgba(255, 255, 255, .5);
+}
+
+.sidebar .logo {
+  margin-top: 15px;
+  float: right;
+  max-width: 120px;
+  display: block;
+  max-height: 50px;
+}
+
+.sidebar .search-input {
+  font-family: Lato, sans-serif;
+  color: #d5dae6;
+  background-color: rgb(43, 49, 64);
+  border: 0;
+  padding: 14px;
+  font-size: 15px;
+  font-weight: normal;
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  -webkit-transition: -webkit-box-shadow .15s ease;
+  transition: -webkit-box-shadow .15s ease;
+  transition: box-shadow .15s ease;
+  transition: box-shadow .15s ease, -webkit-box-shadow .15s ease;
+  outline: none;
+}
+
+.sidebar .search-input:hover {
+  background-color: rgb(41, 47, 61);
+}
+
+.sidebar .search-input:focus {
+  -webkit-box-shadow: 0 0 0 1px rgba(255, 255, 255, .5) inset;
+          box-shadow: 0 0 0 1px rgba(255, 255, 255, .5) inset;
+}
+
+.full-width .sidebar {
+  -webkit-transform: translateX(-270px);
+          transform: translateX(-270px);
+  will-change: transform;
+}
+
+.full-width .content {
+  margin-left: 0;
+}
+
+.content {
+  font-family: Merriweather, 'Book Antiqua', Georgia, 'Century Schoolbook', serif;
+  font-size: 1em;
+  line-height: 1.6875em;
+  width: 100%;
+  margin-left: 270px;
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+  height: 100%;
+  position: relative;
+  z-index: 3;
+  padding: 0 32px;
+  padding: 0 2rem;
+  -webkit-transition: margin ease-in-out .25s;
+  transition: margin ease-in-out .25s;
+  will-change: margin-left;
+}
+
+.content h1,.content h2,.content h3,.content h4,.content h5,.content h6 {
+  font-family: Lato, sans-serif;
+  font-weight: 700;
+  line-height: 1.5em;
+  word-wrap: break-word;
+}
+
+.content h1 {font-size:2em; margin:1em 0 .5em}
+.content h1.heading {color: #666; margin: 1.25em 0 .5em}
+.content h1 small {font-weight:300}
+.content h1 a.view-source {font-size:19.2px;font-size:1.2rem}
+.content h2 {font-size:1.6em;margin:1em 0 .5em;font-weight:700}
+.content h3 {font-size:1.375em; margin:1em 0 .5em; font-weight:700}
+.content .page a {color:#000;}
+.content a *,.content a :after,.content a :before,.content a:after,.content a:before {text-shadow:none}
+.content a:visited {color:#000}
+.content ul li {line-height:1.5em}
+.content ul li>p {margin:0}
+.content blockquote {font-style:italic;margin:.5em 0;padding:.25em 1.5em;border-left:3px solid #e1e1e1;display:inline-block}
+.content blockquote :first-child {padding-top:0;margin-top:0}
+.content blockquote :last-child {padding-bottom:0;margin-bottom:0}
+.content a.no-underline,.content pre a {color:#9768d1;text-shadow:none;text-decoration:none;background-image:none}
+.content a.no-underline:active,.content a.no-underline:focus,.content a.no-underline:hover,.content a.no-underline:visited,.content pre a:active,.content pre a:focus,.content pre a:hover,.content pre a:visited {color:#9768d1;text-decoration:none}
+.content code {font-weight:400;background-color:#f7f9fc;vertical-align:baseline;border-radius:2px;padding:.1em .2em;border:1px solid #d2ddee}
+.content pre {margin:1.5em 0}
+.content img {max-width: 100%}
+
+.content .page {
+  padding: 15px 0;
+  -webkit-transition: all .2s linear;
+  transition: all .2s linear;
+  /* min-height: 100%; */
+  opacity: 1;
+}
+
+.content .page.hide {
+  display: none;
+  opacity: 0;
+}
+
+.footer {
+  color: #999;
+  font-size: .8em;
+  font-style: italic;
+  text-align: center;
+  margin: 30px 0;
+}
+
+.footer a, .footer a:visited {
+  color: #888;
+}
+
+
+.footer a:hover {
+  color: #444;
+}
+
+.tools {
+  opacity: .6;
+  top: 4px;
+  left: 6px;
+  position: absolute;
+  -webkit-transition: opacity .15s linear;
+  transition: opacity .15s linear;
+}
+
+.tools:hover {
+  opacity: .9;
+}
+
+.tools.hide, .search-input.hide {
+  display: none;
+}
+
+.tools button {
+  color: #373f52;
+  float: left;
+  font-size: 16px;
+  height: 30px;
+  width: 30px;
+  margin: 0;
+  background: transparent;
+  margin-right: 4px;
+  font-weight: 300;
+  border: none;
+  line-height: 0;
+  -webkit-transition: background .2s ease;
+  transition: background .2s ease;
+  outline: none;
+}
+
+.tools button:hover {
+  background: rgba(0, 0, 0, .05);
+  cursor: pointer;
+}
+
+.raindrop.icon {
+  color: #373f52;
+  position: absolute;
+  margin-left: 3px;
+  margin-top: -3px;
+  width: 10px;
+  height: 10px;
+  border: solid 1px currentColor;
+  border-radius: 6px 6px 6px 0;
+  -webkit-transform: rotate(135deg);
+          transform: rotate(135deg);
+}
+
+.dark .content {
+  color: #d5dae6;
+  background: rgb(31, 35, 46);
+}
+
+.dark .content code {
+  background-color: rgb(41, 47, 61);
+}
+
+.dark .tools button, .dark .tools button .icon {
+  color: #d5dae6;
+}
+
+.highlight {
+  background: rgba(255, 252, 53, .5);
+}
+
+.sidebar a.highlight {
+  background: rgba(255, 252, 53, .4);
+}
+
+.sidebar .highlight:hover {
+  background: rgba(255, 252, 53, .6);
+}
+
+  </style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/default.min.css">
+</head>
+<body>
+  <div class="main">
+    <section class="sidebar">
+      <div class="header">
+        <img class="logo" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAgAAAAIACAQAAABecRxxAAAZ8UlEQVR4AezdA5AkzfYF8Pts27Zt27Zt2/b7bNt5s7qmZ3q9veasbZujrPX5syO63sR+lYuemuw8/QszQyeys/LmEf5a/7Pf1XepDD9Eoq1HfzfQjspjKkI0vEil5Uj/bvDf+vSruCOEaPgQUKs1AuC/6Sz7PCtEw4VYarWmADDQw/YP0+4xTYYDIplGLdcIgAZdY99ihYg7gOh2AA16We0hNSkXkdSo5RoBkKe77cetEHEHEN0OoEHHpU9OpSxEklKrDQqAnMz8sPsu3VIGIuluORocAHm6SF+uQtS2NwF5E/D26TF7Ru2+NSGK4xCQh4CD6JbkHYkQDSVJWo08AqBBk+qjqkI0VKTaauQVAA3aq19uu4kB4iwAZwH86fTKcypC1E7TgJwGhD89bH5bv3tdWotI6i1HgwOgA6bYKvtGK0S8CdhGNwE7MR970IduGA96iX2QFQoeA4ABoJiC9XAN2IYxPhGwy37ECgWMAcAAGIUl2A83yGIkPiEwWp+oQsSbgMHBfbIv7dnscDx7MAmmmNPv1+9cFyIeAgbDvTK7IhtwKLIaVZhiC5KXJkI07G8CEh7ufpytcPDVgxkwxY7af9bvXRci7gCGKdzpwLuczQ47nKgtGAlTSDeZtxkhOj3E0Glz4CnZX9xWh5M1gAWwPiFg9BEqRDwEHCZwz+zTWd3h1O3CeJhi++0XcAcIEWcBSnboRdmFWY/D6bMCKUyxqZVnVoSIswAlwYMOfCdb6HD67cdUmGKH9Ne1u9WEiA+CDCnc8cCbs5uygw6tsxE1mEK6Inl9IkT8DDhEssdlv802OLReP+ZAfULgws4HdArRiZNOb4S7uY9kI7OjDkNnB8b6RMAO8yEjRBF9Bhzax7QPPted5fY4lGEJKj4hMCJ5fCKRIP4FsJ/Vf6T3SaXVcL8DX3UzHcq012tiQAf0O7gTxBeRIFj6eQPdlLy1pf/3X5NdnTmH4WAtOmGKzU1elAhR2+8A9PMG/0tbcS8Oj3A/y1Y5DCe9mAVT7Ij+fdS9RkkxonCX3giA/9Gjnz+N9+LufOC9Ls2OOAxHWzEKptgGfbNKESLRcH0+fy+u41kdcqoOPO3A3912h+FsAAthYYrdkj4sFWpTLAfVzxvkHDK/Ovl7cbhX9rlskkMYdmMCTCHdZz/HiYE2xkPA/6QrT+Ze3KGXZpdkvQ5hWeX3tvAk83Qj1G54D6ApAPL0gpEPHCl+8OAD388WO4SpB9Nhih3UXyy56xIhGizgpecCIG+n/aCV24c7HnibuzU76BC2TRgBU0iXVV5TEWofnAYcFAB5OvL49+KyJ2R/yDY6tId+zIOiuIDcnJ/cPxFqK7wHcHw6YL496F7c3d3HszHZMYf2shPjYIptM+83Qu2MZwB589IXp/J/Dj3fnev2OrSrZX4TA53Vx1YldMR68KIAaDhq/7bxkQe+4bod2t0+TIEp1m+/xYkBaovPgH66jm6Ci8R6r4kB7U5fkApR4BeB/E3BPrgoeBaPHtG/VO9ZFQoa/wL4S7EKLhKexaPr2DHQBngI6G8cdsJFwq941FxtH2qF2A4cmlwA+FMswgBcFDyLR/ckn06EAsd7AP5GYgtcJNb4FY/W7VOtUOC4A/DXjR64KPRgJkwhPWB/1nhlkeIR7tILAqBYFevgIuFXPGoWV15ZEQocZwH8TcJeuCj4FY/qMXPOmPuNEYpFuEv3CAAfCZbBRcKveFS36ntVKCx8EuwUjMF2uEj4FY9qqo9WocAxAPzNQx9cFPyKR7XXfh13hFDQOAvgrwsb4CLhWTw6M31uKhQ4zgL4mxHNxIBf8age1j9Nu8c0oXYV7tJbEgAGKVbDRcKzeHQNOwbaAM8A/I3HLrhI+BWPmiuqD64KBYzTgCfCYnFEEwOTYQrpbv2kCrUb7gA4MeBfPDo2fXIqFDgeAvrrRi9cFHoxG6ZYZn/MiYHgcRbAX2dEEwOexaMLKy+rCAWOswD+Jkc0MbDIp3j0qJ6V3icVChr/AvhLsBwuEn7Fo2azvkuFAsdDQH9jI5oY8CseVZs+MhUKGXcA8KeYj/5oJga8ikd79KvlF5ATZwGGTA0b4TxFUjw6zT7bCpWDT4KVYAb2w3mIpXjUHNLf1+9eFwpPwEsvIwAaOrAGzkM8xaO60r7RCpWDO4AS1LEbLif64tHL7IOsUBkYACWwWBLNxMA+TIUptlM/pkLl4GfAEozCFhaP5o3SJ6pQORgAJZgTzcRAH+bAFHPmh/U714XKwEPAEnRiPYtHc3S+vkSFysEdQAmmYC+LR5sdtWfU710XKgN3ACWoYAVcExaP6kb7bitUDn4FKME47GDxaI7epI9QoTLwL0AJFAvQz+LRZvv1S5wYKAtnAUpQwyYWj+boFPsMK1QO/gUowUzsZ/Fos4Pmt7W71YSGk3CX7h8AnBgov3i0Ybl9nRUqB3cAJZiA3SwebaLH9JLOB3QKDQ8BLz2MAODEwGC63X7ECpWDO4ASjMZWFo/m1ZLHJ0JlkyRYoQRAwxz0sXi0Wb9+H3eCUBn4GbAEnREVkG/3Kx6doy9UoXLwIlAJpmIvi0ebHbH/HHWvUULlCHjpIQQAJwa8ikfXJ+9IhMrAM4BSjMNOFo/m6A3pw1KhocZegJIoFqKfxaNNdK/9AicGhhoPAUs0ApsjmhjwKR7VienTUvFH3AEEbhZ6WDzaRA/or5fcdYnQ0Ah46aEHQEMVa1g8mqNL7aut+CPeBAzcROxh8Wh+YuDC5P6J+CN+BQhagiVwzVg8us18yEhrkZhg+QdAKEZjG4tH86rVx1aldSjgpfsHQEjmoo/Fo8369Du4I8Qf8TNg0LqwnsWjebOT5yfij3gGELhp2Mfi0SZ6WP9evWdVyAv/AoQvxUq4SOz1Kx5dm7w1EfLEHUD4xmMni0dz9NraQ2pC/vgoKEKfGBhg8WizPfZzVsgTLwKFbyS2RFQ8OtonFsebpxgh3gNALGajBy4SS3yKRzP9RfdduoVOVcBLjyMAGqpYy+LRvMX2FVaIfwGiMQl7WTzaRI+Z82v3rQnxEDASCZbCNWHxqG4x7zdCPAOIxhhsZ/FoXkUfrUJ8FTga89DH4tEm2mu/xYkBzgJEpAsbWDyaN6PynIrQiQl46fEGQMN07GPxaH5i4C/T7jFNyF/AS2cAGKRYBdeMxaOrkzclQpwFiMZ47IqoeLQLptjV1QdXhTgNGAmLRdFMDPRjLhSmgO5KPp0IcQcQjZHYyuLRHB2TPCkRYgBEoxu9cJFY6lM86uzP6neuCx1fwEtnAAzWiXUsHs1bUHlZRYifAaMxGXtYPNrsqDknvU8qxGqwSFSwDK4Zi0c32fdZIU4DRmMsdrB4NEdN+shUiDuASCjmo5/Fo8167NdZQM5ZgIjUsJHFo3lTO57VIdQQ8NIZAH5mYD+LR5sd0j/V714X4mfASHRgNYtHc3SlvkGF+B5ANOrYzeLRvCtGPnCkxC7gpTMATozF4ogmBub7TAzs0E+qRIM7ABoV0cTATr+JgZEdT+iQaPAQkOZENDGw3Kd4dMD+OKKJAR4CUhfWsXg0b1764lSiwYtANAV7WTza7IieVb93XSLBHQBVsByuGYtHN+i7VKLBQ0Aai50sHs27pevhXRKPgJfOAODEQCuKR3Wf/YqVWHAakDACmyJ6RmRiwTvLE7Ho2NZ7bpU4hLv00xoANAM9kRePKsagG8v/FwOAARCdDqyJtni0E1OxGMsbGAAMgDhNwJ7IikctxmEelv8PBgADgBIswUA0l4SWYCmWN2MAMABoNP6LvbvAed0IoDC6/72UmZm5Fc3PzIxi3TJEU8iT09geH317OInG1+Oj5ncBx1lP+fsAAAB9nbtmnwPspvx7AACAXsp2czcIH2Yt5W8DAABU9VGuGrk09CxbKf8aAACgquezMvrPiu9nNWWuAAAAVb2d05Ee9Z1kI+WJAgAAVPV0vh/ZGwOX1VEfAADQIb2a/ZH87h/VR30AAED39HluBn3Ud57tlCoAAGBB6cVsDvR7AAf1UR8AALD49P6g3hi4z2k2U6oAAID/MW8MDOMR315WUlIAAAAttzdzNLQ1PwAA0H7eGDjPTkodAACgZfdydpZ6kcdB/YgPAABQn32cq37W/AAAQPt5Y+Aq+/Mf9QEAAOqjd3LW/5ofAABQXz2TH/Kw1Is7AAAADarXcrCQizu6P+IDAADUS1/ktvc1PwAAoN56KRs9r/kBAAD12ge5nHvNf9JhzQ8AAGi0bwxcZrf7Iz4AAEDD7K0c/+NRX/c1PwAAoIH3dL7J/dLX/AAAgAbTK9ld/JofAADQePokJ4tf8wMAABpLqyktAwAAAAgAAACAAAAAAAgAAACAAAAAAKhMFwAAAEA/AGBIAUAA2M1FNqcGAAAEgI2c/Hqp+ZQAAIAAsJL93+8xnhIAABAAtnJW3VvYPAAAEADWclBfVdY+AAAQAHZynseqxgEAgACwnuPq+4XNAwAAAWAle/Uny9oHAAACwGZOq1uImgcAAALAag5yk8eqxgEAgACwXR/1tQ8AAASAtRxVR30AAEDzAWAlu/UHSAAAgPYDwGZOqqM+AACg+QCwOrvmBwAA2g8A9ZofAADQZABYy2G95gcAANoPALu5yGMVAADQQADosOYHAAAaCAAd1vwAAEBjAWArp3Mc9QEAAI0FgLUczrfmBwAA2goA9cUdAAAAACYAwPqTr/kBAIAWAkD3NT8AAKCRArCRx84BAAACAAAAIAAAAAACAAAAIAAAAAACAAAAIAAAAAACAAAAIAAAAAACAAAAIAAAAAACAAAAIAAAAAACAAAAIAAAAAACAAAAIAAAAAACAAAAIAAAAAACAAAAIAAAAAACAAAAIAAAAAACAAAAIAAsOAAIAAAAgAAAAAAIAAAAgAAAAAAIAAAAgAAAAAAIAAAAgAAAAAAIAAAAgAAAAAAIAAAAgAAAAAAIAAAAgAAAAAAIAAAAgAAAAAAIAAAAgAAAAAAIAAAAgAAAAAAIAAAAgAAAAAAIAAAAgAAAAAAIAD0EAAEAAAAQAAAAAAEAAAAQAAAAAAEAAAAQAAAAAAEAAAAQAAAAAAEAAAAQAAAAAAEAAAAQAAAAAAEAAAAQAAAAAAEAAAAQAAAAAAEAAAAQAAAAAAEAAAAQAAAAAAFgwQFAAAAAAAQAAABAAAAAAAQAAABAAAAAAAQAAABAAAAAAAQAAABAAAAAAAQAAABAAAAAAAQAAABAAAAAAAQAAABAAAAAAAQAAABAAAAAAAQAAABAAAAAAAQAAABAAOghAAgAAACAAAAAAAgAAACAAAAAAAgAAACAAAAAAAgAAACAAAAAAAgAAACAAAAAAAgAAACAAAAAAAgAAACAAAAAAAgAAACAAAAAAAgAAACAAAAAAAgAAACAANBDABAAAAAAAQAAABAAAAAAAQAAABAAAAAAAQAAABAAAAAAAQAAABAAAAAAAQAAABAAAAAAAQAAABAAAAAAAQAAABAAAAAAAQAAABAAAAAAAQAAABAA+g8AAgAAACAAAAAAAgAAACAAAAAAAgAAACAAAAAAAgAAACAAAAAAAsBtDrICAABMLwBcZTelDgAAaDsAPOSs/uMPAAC0HwDucpS1lDoAAKDtAHCdvZQ6AACg9QBwnq2UOgAAoO0AcJ+T+k8/AADQfgC4qR7zAQAAkwgAF9lJqQMAANoOAA85yXpKHQAA0HYAuMtBVlPqAACANgNAte0DAACmFQDqbR8AANB+AKi3fQAAQPsBoN72AQAAjQeAatsHAABMKwDMbvsAAABNBoDZKzwAAABNBoDL2W0fAACgaQDwkNNspMwEAABMIADc5bDDtg8AABhtALjusO0DAACGHwA6bvsAAACNH4Du2z4AAEDjB+A6e4t/zAcAAGigAHTb9gEAABo/APc57nCFBwAA8GN79wDfSLcGYHzWuLZt27Zt27Zt27bed9ps8fnLvZ9t5GTSpna7aJv1vtcuM5OcSc/z++/W/bnP5MwcoGUD0Iy5fQSAAMB/AFoEASAAIAAEgACAABAAAgACQAAIAAgAASAAIAAEwLf42tolBv8IAAHwRJ+sg2LwjwAQAC+KV5Tvy2Ex+EcACIAXbfeWC8XgHwEgAF4UN+pHpCYG/wgAAfBCb67HicE/AkAAPIlfpZNi8I8AEAAv4mvI78TgHwEgAJ60PUISMfhHAAiAF8Wt8mU9KAb/CAAB8KL9TnKGGPwjAATAC1uv79A9YvCPABAALzpuoEeJwT8CQAA80afpsBh8IwAEwJPuK+sP9YgYfCIABMAjva9eLAZ/CAAB8OqcTfpx2SsGPwgAAfCucEs9Qey/gQAQgIDoa2RaDEIAjAAEqfta+gcxEAACEKy2R0uvGAgAAQjUadvir7JigAAQgIDFd9GzxEAACECgbL2+W2bFEGgACADabyTHiCHYABAA6DN1RAyBBoAA4Lir6E9aZ8UAAeixARuyURu3YeuzCgFIHwDoA/QyMeQ7AD02arut9j/22LCVCUC6AODSzfEndZ8Y8hmAxCattqh5m0gbAQKAwm30j2LIXwCGbc5qy5i1KgFIGwDo63VGDHkKwITVVmiUAKQNAOJri4ohHwFwNmW1VRglAOkDgLbHaZ8Y/Adg2mqrNEwA0gcAHdv1G3JIDD4DMGK1OgwQgCwCAL27nisGXwGoWq0us1YmAFkEALZB3itzYmh+AJztsVqdJghAVgGA3kS6xdDsAIxYLYVeApBdABC/WMfE0LwAOJtLFYApApBlANB5Nf0ZKwaaF4ARq6WUEIBsAwB9sJTE0IwAzKYOwCgByDoA6N4Sf0b2i6GxAei1WmqzBKARAUB8Oz1ZDI0MwKjVMlAhAI0IAGydvFF3iqFRAdiVSQAGCECjAoCu60q7GBoRAGe1TIwTgEYGAPETpV8MWQegJ6MA7CQAjQ0AilfUb8lhMWQZgP6MArCbADQ+ACjcU84XQ3YBGM4oALMEoBkBQHGjfEDnxRaCi4+sNgBjGQVgjgA0KwDYcbOFzxjA5eMpHwKmQACaGADoS2VCDP8TgEEPQwBeAfgIAI6+uv5SDPkIwC4C0PwAQB+mZTHUH4DBjAIw7SMABADFrfo5OSCG+gJQZSJQqwcAO+6gp4mhngC4jAIw7DUABIAVA2+R3WIEwNdagIrfABAAFK6vO8RWiwCMe5gHSADQEPFTdJAANH8y8Fg+AkAAULiSflcOE4Dm7ghUzU8ACADa7yMXEYDm7Qk4k69NQQkAihv1Q1IjACuTNPj6TwDgQdst9DgCsDLjDb/+EwB4oK/QSQLQyJOB5q0nvwEgAOi4pvyaACyvr84ADOX9cFACAH2kVgjAcsYbfyYQAYAfp23TL+pBArC0yVXvA+gIQKsEAIU7yxkEYGlTq1n/l+LPnwDAA1sfv033EIAsBgKTVkqFAMALvaF2EYClVJedGThr/VZKiQDAm/jpOkwAFle2kUUjMGejqV76EwDkQPeV5ft6hAAspd+mbJfN/8d1f8L6rJQRAgDP2u8vlxCA5VX+omyljBEAeHfOJv2o7CUAPhAA5ILcSk8kAASAAAQsfpVMEwACQACC1X0t+R0BIAAEIGDyGOklAASAAASrY7t8WQ8SAAJAAILVdlc5mwAQAAIQLNsQv1NmCQABIADB6rixdhIAAkAAAtb2PBklAASAAASr7aryIz1CAAgAAQhW/EC9jAAQAAIQrEs368d1HwEgAAQgWHJb/RMBIAAEIFi2Tl+jMwSAABCAYBWuo38gAASAAARMHq99BIAAEIBgHXMF+ZocIgAEgAAEq+0ech4BIAAEIFi2Qd+t8wSAABCAYLXdVI8iAASAAAQsfoGOEwACQACC1Xk1/YkeIQAEgAAEK36IlAgAASAAwereEn9S9hMAAkAAgtV+ez2FABAAAhDyioHXyy4CQAAIQLD0ehoTAAJAAAImT9IBAkAACECwilfUb8hhAvD/3BF3rHu8i0IROQRK76UXEID/Mue+13ub3igkUS+CVdwo75UaAfibvtJ7qletRqGJqgia3lyPDT4Ap5aebRssClFkCF78YpkINAD7S79M7p5E4YqSCIivoT8LLQBuvPSJ3uv0RmH7xzsgfrgkoQTAnZe8PNmSRPjXB0Bxa/wZObC2A+AOufbkoUmEBQIAxHfU09dqANyu8leqN61GWPQpAGDr5Y2ye80FwJXfNHHFiei/YYEvAR03kPa1EwB3XPmJts4irPgxICBPlaGWD8C8+35y+yTCqu8BAN1X1m/J4VYNgBtw7xu8+mCEpSz5TUDvKxe1XgDc6e65ttEipBwCAOdskg/I3pYJwAH3a3cvFyGz1YBA4ZZyfP4D4Cbcp/qu1xetHFb4Y4C+VKfyGwB3YekV1a3VCA2aBwB0XFN/mb8AuMOlQunhpQj1WNUPA/GjtCc/AXC7S18t37wcoV6r/HHgtG36OT3oPwAuKb9l8kqTEdKo41eA+C56ps8AuBOSJ/ub28djQGC9vEVmmx8AV3M/rNyxEiEbdf8i0H4jLTQzAG6o/IGhawxFyE6qXwb0mTrSjAC4M8vPy93cPoYAwHFX0e/qkQYG4ID7Tfk+5Qg5fQoA6APk0oYEYMp92t3ARcj1VGDg0s36Id2XaQAudq8a3DYYoSVWAwLxraWYRQDcYddRfmQ5AkMAtBh9hUynCsAe9/XKLSsReAyIlhRfW35dXwBcj3tbcuUkAjsCoaXFj9XqKgNQLD3F1lsEHgNiDejYrl+UQysJgNtb+lHpzqUIrAbEmlK4m56zTABGyh9MrpVEYAiANcg2xG+TuYUD4M5KXmCbLAJDAKxhehPt+p8AHHS/q9y/EgWBpwCAPkfH/hGA6fJnKzeqRAEhAEDbVeX7pRPKrxnZPhLlB/4MoVzNFDo9XwYAAAAASUVORK5CYII=" />
+        <h1>
+            <a href="https://github.com/BafS/Documentor">Documentor</a>
+        </h1>
+        <span>0.1.0</span>
+      </div>
+
+      <ul class="menu">
+        <li><a href="#0_Introduction">Introduction</a></li>
+        <li><a href="#1_Installation">Installation</a></li>
+        <li>
+          <a href="#2_Usage">Usage</a>
+          <ul>
+            <li><a href="#2_Usage/0_CommandLine">Command Line</a></li>
+            <li><a href="#2_Usage/1_MarkdownFiles">Markdown Files</a></li>
+          </ul>
+        </li>
+        <li><a href="#3_Configuration">Configuration</a></li>
+        <li><a href="#9_Customization">Customization</a></li>
+      </ul>
+
+      <input class="search-input hide" placeholder="search"></input>
+    </section>
+
+    <section class="content">
+      <div class="tools hide">
+        <button class="toggle-sidebar">☰</button>
+        <button class="toggle-light">
+          <div class="raindrop icon"></div>
+        </button>
+        <button class="previous-page"><</button>
+        <button class="next-page">></button>
+      </div>
+
+      <div class="page" id="0_Introduction">
+        <h1 class="heading">Introduction</h1>
+        <h1>Welcome to Documentor documentation</h1>
+<blockquote>
+<p>A super intuitive doc generator from Markdown files</p>
+</blockquote>
+<p>Documentor was made to create a documentation from simple flat markdown files.</p>
+<p>The goal of the project is</p>
+<ul>
+<li>To have an easy way to do it</li>
+<li>To embed everything (style, script, images) in a single html file</li>
+<li>To be able to read the documentation without javascript</li>
+<li>To have a simple search engine (if javascript is enabled)</li>
+<li>To be easily customizable</li>
+</ul>
+
+      </div>
+
+      <div class="page" id="1_Installation">
+        <h1 class="heading">Installation</h1>
+        <p>Install Documentor globally to have the <code>documentor</code> command in your terminal.</p>
+<p>Please make sure that you have node version 7.6.0+.</p>
+<pre><code class="language-bash"># for npm users
+npm install -g documentor
+# for yarn users
+yarn global add documentor
+</code></pre>
+
+      </div>
+
+      <div class="page" id="2_Usage">
+        <h1 class="heading">Usage</h1>
+        <h2>Express Usage</h2>
+<ul>
+<li>Run <code>documentor init</code> to initialize your documentation</li>
+<li>Run <code>documentor ./yourFolder -o output.html</code> to render your documentation</li>
+</ul>
+<h2>For more Information</h2>
+<ul>
+<li><a href="#2_Usage/0_CommandLine">Command Line Usage</a></li>
+<li><a href="#2_Usage/1_MarkdownFiles">Markdown Files</a></li>
+</ul>
+
+      </div>
+
+      <div class="page" id="2_Usage/0_CommandLine">
+        <h1 class="heading">Command Line</h1>
+        <ul>
+<li><strong><code>-i</code></strong>, <strong><code>--input</code></strong>: Input folder (optional flag)</li>
+<li><strong><code>-o</code></strong>, <strong><code>--output</code></strong>: Write in file</li>
+<li><strong><code>-c</code></strong>, <strong><code>--config</code></strong>: Configuration file</li>
+<li><strong><code>-w</code></strong>, <strong><code>--watch</code></strong>: Watch docs files with partial generation</li>
+<li><strong><code>-v</code></strong>, <strong><code>--verbose</code></strong>: Configuration file</li>
+<li><strong><code>--var</code></strong>, <strong><code>--variable</code></strong>: Set or override config variable(s)</li>
+<li><strong><code>-h</code></strong>, <strong><code>--help</code></strong>: Show help</li>
+</ul>
+<h3>Examples</h3>
+<p>Generate <code>project.html</code> from <code>./docs</code> folder</p>
+<pre><code class="language-bash">documentor ./docs -o out.html
+</code></pre>
+<p>Output html to STDOUT from <code>./docs</code> folder and read the <a href="#3_Configuration">configuration</a> file <code>conf.yml</code></p>
+<pre><code class="language-bash">documentor docs -c conf.yml
+</code></pre>
+<p>Generate &quot;out.html&quot; with a custom name and footer</p>
+<pre><code class="language-bash">documentor ./docs -o out.html --var.name &quot;My Project&quot; --var.footer &quot;(c) Project 1.0&quot;
+</code></pre>
+<p>Watch the &quot;docs&quot; folder and regenerate &quot;out.html&quot; on change</p>
+<pre><code class="language-bash">documentor docs -o out.html -w
+</code></pre>
+
+      </div>
+      <div class="page" id="2_Usage/1_MarkdownFiles">
+        <h1 class="heading">Markdown Files</h1>
+        <h1>File Structure</h1>
+<p>Documentor will list all markdown file with the .md or .markdown extension to create pages of the documentation.</p>
+<p>To <em>hide</em> a file from the listing, you can prefix the file with an underscore (eg. <code>_hideMe.md</code>).</p>
+<p>The pages are <em>sorted</em> alphabetically. To sort your pages manually you can prefix a number followed by an underscore (eg. <code>0_Introduction</code>, <code>1_HowToUse</code>, etc.).</p>
+<p>It is possible to have sub pages by creating sub files in a folder. The folder name will be seen as an empty page. To add content to this page, you can name your file <code>index.md</code>.</p>
+<p>The title of the page is generated from the file name. The file name will be decamelized (eg. <em>MySuperTitle</em> will become <em>My Super Title</em>).</p>
+<h3>Example</h3>
+<pre><code class="language-bash">.
+└── docs
+    ├── _config.yml        # Optional configuration
+    ├── 0_Introduction.md
+    ├── _todo.md           # This will not be listed in the documentation
+    └── Basics
+        ├── index.md       # This will be seen as the &quot;Basics&quot; page
+        ├── 0_Action.md
+        └── 1_Reaction.md
+</code></pre>
+<h1>Markdown Files Header</h1>
+<p>If you want to force a specific title you can simply add the <code>title</code> variable in the head of your markdown file.</p>
+<p>Example</p>
+<pre><code class="language-md">---
+title: Introduction
+---
+
+Lorem ipsum...
+</code></pre>
+
+      </div>
+      <div class="page" id="3_Configuration">
+        <h1 class="heading">Configuration</h1>
+        <p>By default, Documentor will read <code>_config.yml</code> in the root folder of the documentation but you can pass <code>-c</code> or <code>--config</code> to use your own config path (see the <a href="#2_Usage/0_CommandLine">Command Line Usage</a> for more information).</p>
+<h1>Options</h1>
+<ul>
+<li><strong><code>name</code></strong> – Name of the project. It will be the main title for the html page.</li>
+<li><strong><code>version</code></strong> – Version of the project.</li>
+<li><strong><code>homepageUrl</code></strong> – Homepage of the project</li>
+<li><strong><code>logo</code></strong> – Main logo of the project.</li>
+<li><strong><code>icon</code></strong> – Icon of the project, will typically be used for the favicon of the html page.</li>
+<li><strong><code>footer</code></strong> – The content of the footer.</li>
+<li><strong><code>template</code></strong> – By default Documentator uses the <em>alchemy</em> template. To use a custom template path, start with <code>./</code> for a relative path or <code>/</code> for an absolute path.
+<ul>
+<li><em>Example</em> – <code>template: ./mytemplate</code></li>
+</ul>
+</li>
+<li><strong><code>htmlHeader</code></strong> – List of html element to add in the header</li>
+<li><strong><code>htmlBody</code></strong> – List of html element to add in the body</li>
+</ul>
+<p>All fields are optionals.</p>
+<h2>Example of a Configuration File</h2>
+<pre><code class="language-js">name: Documentor
+version: 0.1.0
+logo: _assets/logo.png
+icon: _assets/icon.png
+</code></pre>
+
+      </div>
+
+      <div class="page" id="9_Customization">
+        <h1 class="heading">Customization</h1>
+        <p>You can customize the style or structure by creating your own template.</p>
+<pre><code class="language-bash">documentor ./docs -o out.html --var.template &quot;./myTemplate&quot;
+</code></pre>
+<p>A template is composed of html, javascript and css. The structure of the template needs to be the following:</p>
+<pre><code>.
+└── myTemplate
+    ├── base.html
+    ├── main.js
+    └── style.css
+</code></pre>
+<p>The javascript and css files are optional. To begin, check how the build-in template is made in the <a href="https://github.com/BafS/Documentor/tree/master/templates/alchemy">templates/alchemy</a> folder.</p>
+<h2>Html</h2>
+<p>The html use <a href="http://handlebarsjs.com/">Handlebar</a> as a template, Handlebars is largely compatible with Mustache templates.</p>
+<h2>Style (css)</h2>
+<p>Documentor uses Postcss with <a href="http://cssnext.io/">cssnext</a>. You can thus uses the <a href="http://cssnext.io/features/">features</a> of cssnext.</p>
+<h2>Javascript</h2>
+<p>Javascript is transpiled with <a href="https://babeljs.io/">Babel</a> to ECMAScript 5. You can use ECMAScript 6, modules, fat arrow etc.</p>
+
+      </div>
+
+
+      <footer class="footer">
+        Build with <a href="https://github.com/BafS/Documentor">Documentor</a> 0.1.0
+      </footer>
+    </section>
+  </div>
+  <script>
+    'use strict';function _toConsumableArray(arr){if(Array.isArray(arr)){for(var i=0,arr2=Array(arr.length);i<arr.length;i++){arr2[i]=arr[i]}return arr2}else{return Array.from(arr)}}/**
+ * Get the current hash (without the leading #)
+ * @returns {string}
+ */var currentHash=function currentHash(){return window.location.hash.substr(1)||''};/**
+ * Get all pages element
+ * @returns {Element[]}
+ */var getPageElements=function getPageElements(){return[].concat(_toConsumableArray(document.querySelectorAll('.content .page')))};var pageEls=getPageElements();/**
+ * Get current page index from an hash string
+ * @param {number} hash
+ */var getCurrentPageIndex=function getCurrentPageIndex(hash){return pageEls.findIndex(function(page,i){return page.id===hash||i===0&&hash===''})};/**
+ * Display class from hash string
+ * @param {string} hash
+ */var showPageFromHash=function showPageFromHash(hash){var activeIndex=0;pageEls.forEach(function(page,i){if(page.id===hash||i===0&&hash===''){activeIndex=i;page.classList.remove('hide')}else{page.classList.add('hide')}});return activeIndex};/**
+ * Toggle class for an element
+ * @param {Element} element
+ * @param {string} className
+ */var toggleClass=function toggleClass(element,className){if(element.classList!==null&&element.classList.contains(className)){element.classList.remove(className)}else{element.classList.add(className)}};/**
+ * Highlight the given word
+ * @param {Element} root
+ * @param {string} word
+ * @param {string} [className='highlight'] className
+ */function highlightWord(root,word){var className=arguments.length>2&&arguments[2]!==undefined?arguments[2]:'highlight';var excludeElements=['script','style','iframe','canvas'];var found=false;/**
+   * @returns {Node[]}
+   */var textNodesUnder=function textNodesUnder(){var walk=document.createTreeWalker(root,NodeFilter.SHOW_TEXT,null,false);var text=[];while(walk.nextNode()){if(excludeElements.indexOf(walk.currentNode.parentElement.tagName.toLowerCase())<0){text.push(walk.currentNode)}}return text};/**
+   * Highlight words
+   * @param {Node} n
+   * @returns {boolean}
+   */var highlightWords=function highlightWords(n){var indexOfNode=function indexOfNode(node,i){return node.nodeValue.toLowerCase().indexOf(word.toLowerCase(),i)};var after=void 0;var span=void 0;var i=indexOfNode(n);if(!found&&i>-1){found=true}while(i>-1){after=n.splitText(i+word.length);span=document.createElement('span');span.className=className;span.appendChild(n.splitText(i));after.parentNode.insertBefore(span,after);n=after;i=indexOfNode(after,i)}};textNodesUnder().forEach(highlightWords);return found}/**
+ * Remove highlight from elements
+ * @param {Element[]} elements
+ */var removeHighlight=function removeHighlight(elements){elements.forEach(function(el){var prev=el.previousSibling;var next=el.nextSibling;prev.textContent+=el.textContent+next.textContent;el.parentNode.removeChild(next);el.parentNode.removeChild(el)})};var sidebarLinks=document.querySelectorAll('.sidebar ul li a');/**
+ * Highlight sidebar link
+ * @param {number} index
+ */var addClassSidebarIndex=function addClassSidebarIndex(index,className){sidebarLinks[index].classList.add(className)};/**
+ * Remove highlights from sidebar
+ */var removeClassesSidebar=function removeClassesSidebar(className){sidebarLinks.forEach(function(link){return link.classList.remove(className)})};var toggleActiveLinkSidebar=function toggleActiveLinkSidebar(index){sidebarLinks.forEach(function(link,i){if(i===index){link.classList.add('active')}else{link.classList.remove('active')}})};var main=document.querySelector('.main');document.querySelector('button.toggle-sidebar').onclick=function(){toggleClass(main,'full-width')};document.querySelector('button.toggle-light').onclick=function(){toggleClass(main,'dark')};document.querySelector('button.next-page').onclick=function(){var nextIndex=Math.min(getCurrentPageIndex(currentHash())+1,pageEls.length-1);window.location.hash='#'+pageEls[nextIndex].id};document.querySelector('button.previous-page').onclick=function(){var prevIndex=Math.max(0,getCurrentPageIndex(currentHash())-1);window.location.hash='#'+pageEls[prevIndex].id};document.querySelector('.tools').classList.remove('hide');var searchInputEl=document.querySelector('.search-input');searchInputEl.classList.remove('hide');var highlightClass='highlight';searchInputEl.addEventListener('keypress',function(e){var key=e.which||e.keyCode;if(key===13){removeHighlight([].concat(_toConsumableArray(document.querySelectorAll('.content .highlight'))));removeClassesSidebar(highlightClass);pageEls.forEach(function(el,pIndex){if(highlightWord(el,searchInputEl.value)){addClassSidebarIndex(pIndex,highlightClass)}})}});searchInputEl.addEventListener('keyup',function(e){var key=e.which||e.keyCode;if(key!==13&&searchInputEl.value.length<1){removeHighlight([].concat(_toConsumableArray(document.querySelectorAll('.content .'+highlightClass))));removeClassesSidebar(highlightClass)}});var showPageFromCurrentHash=function showPageFromCurrentHash(){var index=showPageFromHash(currentHash());toggleActiveLinkSidebar(index)};// Listen for hash change
+window.onhashchange=function(){showPageFromCurrentHash()};showPageFromCurrentHash();
+  </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
+</body>
+</html>
