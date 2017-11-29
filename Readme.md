@@ -1,12 +1,6 @@
-# Documentor
-
-![](https://i.imgur.com/6Gjb6Gz.png)
+<a href="https://bafs.github.io/Documentor" target="_blank"><img width="600" src="https://i.imgur.com/6Gjb6Gz.png" /></a>
 
 > A super intuitive doc generator from Markdown files
-
-<center>
-  <img width="600" src="https://i.imgur.com/wErMEKf.png" />
-</center>
 
 # Installation
 
@@ -16,7 +10,17 @@ npm -g i documentor
 
 or for yarn users: `yarn global add documentor`
 
-# Documentation
+## Quick Usage
+
+```bash
+documentor init  # initialisation of the documentation
+```
+
+```bash
+documentor ./myName -o output.html  # render the documentation to output.html
+```
+
+# [Documentation](http://bafs.github.io/Documentor)
 
 Please check the [**documentation**](http://bafs.github.io/Documentor) for more details.
 
@@ -68,6 +72,10 @@ yarn install
 yarn test
 ```
 
-TODO
+# Screenshot
 
-[] Embed images from markdown
+<p align="center"><a href="https://bafs.github.io/Documentor" target="_blank"><img width="600" src="https://i.imgur.com/wErMEKf.png" /></a></p>
+
+#### TODO
+
+ - [ ] Embed images from markdown
