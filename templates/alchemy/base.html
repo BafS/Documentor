@@ -23,7 +23,13 @@
         {{#if logo}}
         <img class="logo" src="{{{logo}}}" />
         {{/if}}
-        <h1>{{name}}</h1>
+        <h1>
+          {{#if homepageUrl}}
+            <a href="{{homepageUrl}}">{{name}}</a>
+          {{else}}
+            {{name}}
+          {{/if}}
+        </h1>
         {{#if version}}
         <span>{{version}}</span>
         {{/if}}

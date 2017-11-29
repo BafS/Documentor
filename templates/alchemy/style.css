@@ -68,7 +68,7 @@ a {
   padding: 0;
   line-height: 0;
 }
-.sidebar a {
+.sidebar ul a {
   display: block;
   text-overflow: ellipsis;
   white-space: nowrap;
@@ -82,15 +82,20 @@ a {
   margin: 0;
   border-left: 2px solid transparent;
 }
-.sidebar a.active {
+.sidebar ul a.active {
   background: rgba(255, 255, 255, .04);
   border-left: 2px solid rgba(255, 255, 255, .6);
 }
-.sidebar a:hover {
+.sidebar a:hover, .sidebar .header a:hover {
   color: #fff;
+}
+.sidebar ul a:hover {
   background: rgba(255, 255, 255, .08);
 }
-
+.sidebar .header a {
+  color: var(--secondaryColor);
+  text-decoration: none;
+}
 .sidebar .header {
   padding: 0 15px;
   padding-bottom: 15px;
@@ -161,14 +166,12 @@ a {
 }
 
 .content h1 {font-size:2em; margin:1em 0 .5em}
-.content h1.heading {color: #666; margin: 1em 0 .5em}
+.content h1.heading {color: #666; margin: 1.25em 0 .5em}
 .content h1 small {font-weight:300}
 .content h1 a.view-source {font-size:1.2rem}
 .content h2 {font-size:1.6em;margin:1em 0 .5em;font-weight:700}
 .content h3 {font-size:1.375em; margin:1em 0 .5em; font-weight:700}
-.content .page a {color:#000;text-decoration:none;text-shadow:.03em 0 #fff,-.03em 0 #fff,0 .03em #fff,0 -.03em #fff,.06em 0 #fff,-.06em 0 #fff,.09em 0 #fff,-.09em 0 #fff,.12em 0 #fff,-.12em 0 #fff,.15em 0 #fff,-.15em 0 #fff;background-image:linear-gradient(#fff,#fff),linear-gradient(#fff,#fff),linear-gradient(#000,#000);background-size:.05em 1px,.05em 1px,1px 1px;background-repeat:no-repeat,no-repeat,repeat-x;background-position:0 90%,100% 90%,0 90%}
-.content a:selection {text-shadow:.03em 0 #b4d5fe,-.03em 0 #b4d5fe,0 .03em #b4d5fe,0 -.03em #b4d5fe,.06em 0 #b4d5fe,-.06em 0 #b4d5fe,.09em 0 #b4d5fe,-.09em 0 #b4d5fe,.12em 0 #b4d5fe,-.12em 0 #b4d5fe,.15em 0 #b4d5fe,-.15em 0 #b4d5fe;background:#b4d5fe}
-.content a:-moz-selection {text-shadow:.03em 0 #b4d5fe,-.03em 0 #b4d5fe,0 .03em #b4d5fe,0 -.03em #b4d5fe,.06em 0 #b4d5fe,-.06em 0 #b4d5fe,.09em 0 #b4d5fe,-.09em 0 #b4d5fe,.12em 0 #b4d5fe,-.12em 0 #b4d5fe,.15em 0 #b4d5fe,-.15em 0 #b4d5fe;background:#b4d5fe}
+.content .page a {color:#000;}
 .content a *,.content a :after,.content a :before,.content a:after,.content a:before {text-shadow:none}
 .content a:visited {color:#000}
 .content ul li {line-height:1.5em}
@@ -180,6 +183,7 @@ a {
 .content a.no-underline:active,.content a.no-underline:focus,.content a.no-underline:hover,.content a.no-underline:visited,.content pre a:active,.content pre a:focus,.content pre a:hover,.content pre a:visited {color:#9768d1;text-decoration:none}
 .content code {font-weight:400;background-color:#f7f9fc;vertical-align:baseline;border-radius:2px;padding:.1em .2em;border:1px solid #d2ddee}
 .content pre {margin:1.5em 0}
+.content img {max-width: 100%}
 
 .content .page {
   padding: 15px 0;
