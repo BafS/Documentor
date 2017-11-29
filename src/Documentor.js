@@ -1,12 +1,8 @@
 const fs = require('fs');
 const chokidar = require('chokidar');
 const Page = require('./Page');
-const { getBasename, getExtension } = require('./helpers');
-const HtmlGenerator = require('./generators/HtmlGenerator');
-
-const generators = {
-  html: HtmlGenerator,
-};
+const { getBasename, getExtension, humanizesSlug } = require('./helpers');
+const generators = require('./generators');
 
 const output = (outputFile, out) => {
   if (!outputFile) {
@@ -31,7 +27,7 @@ module.exports = class Documentor {
     };
 
     const systemConfig = {
-      documentor_version: '0.0.6',
+      documentor_version: '0.1.0',
     };
 
     this.dir = dir.replace(/\/+$/, '/');
@@ -71,6 +67,9 @@ module.exports = class Documentor {
         if (children[indexBase]) {
           children.splice(indexBase, 1);
           page.slug = page.slug.substr(0, page.slug.lastIndexOf('/index'));
+          if (page.title === 'index') {
+            page.title = humanizesSlug(name);
+          }
         }
 
         arr.push({ ...page, children });
@@ -108,7 +107,7 @@ module.exports = class Documentor {
    */
   async watch(outputFile, callback) {
     const watcher = chokidar.watch([this.dir], {
-      ignored: /(^|[/\\])\../,
+      ignored: /(^|[/\\])\..|\.ya?ml$/,
       persistent: true,
       ignoreInitial: true,
     });
