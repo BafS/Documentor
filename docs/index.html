@@ -1,0 +1,514 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <meta name="generator" content="Documentor v0.0.2 (https://github.com/BafS/Documentor)" />
+  <title>Netium</title>
+  <link rel="icon" href="data:image/png;base64,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" />
+  <style>
+    @import url(https://fonts.googleapis.com/css?family=Lato:300,700|Merriweather:300italic,300|Inconsolata:400,700);
+*, :after, :before {
+  -webkit-box-sizing: inherit;
+          box-sizing: inherit;
+}
+html, body {
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  height: 100%;
+  width: 100%;
+}
+body {
+  margin: 0;
+  font-size: 16px;
+  line-height: 1.6875em;
+  font-family: Lato, sans-serif;
+}
+a {
+  -webkit-transition: all .2s linear;
+  transition: all .2s linear;
+}
+.main {
+  display: -ms-flexbox;
+  display: -ms-flex;
+  display: -webkit-box;
+  display: flex;
+  -ms-flex-pack: end;
+  -webkit-box-pack: end;
+          justify-content: flex-end;
+}
+.sidebar {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  min-height: 0;
+  -ms-flex-direction: column;
+      flex-direction: column;
+  width: 270px;
+  height: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 4;
+  font-size: 15px;
+  line-height: 18px;
+  background: #373f52;
+  color: #d5dae6;
+  overflow: hidden;
+  -webkit-transition: -webkit-transform ease-in-out .25s;
+  transition: -webkit-transform ease-in-out .25s;
+  transition: transform ease-in-out .25s;
+  transition: transform ease-in-out .25s, -webkit-transform ease-in-out .25s;
+}
+.sidebar ul.menu {
+  margin-bottom: 44px;
+  overflow-y: auto;
+}
+.sidebar ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+.sidebar ul > li > ul a {
+  padding-left: 34px;
+  height: 38px;
+  line-height: 38px;
+}
+.sidebar ul li {
+  margin: 0;
+  padding: 0;
+  line-height: 0;
+}
+.sidebar a {
+  display: block;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+  width: 100%;
+  color: #d5dae6;
+  padding: 0 14px;
+  height: 40px;
+  line-height: 40px;
+  text-decoration: none;
+  margin: 0;
+  border-left: 2px solid transparent;
+}
+.sidebar a.active {
+  background: rgba(255, 255, 255, .04);
+  border-left: 2px solid rgba(255, 255, 255, .6);
+}
+.sidebar a:hover {
+  color: #fff;
+  background: rgba(255, 255, 255, .08);
+}
+
+.sidebar .header {
+  padding: 0 15px;
+  padding-bottom: 15px;
+  border-bottom: 1px solid rgba(255, 255, 255, .5);
+}
+
+.sidebar .logo {
+  margin-top: 15px;
+  float: right;
+  max-width: 120px;
+  display: block;
+  max-height: 50px;
+}
+
+.sidebar .search-input {
+  font-family: Lato, sans-serif;
+  color: #d5dae6;
+  background-color: rgb(43, 49, 64);
+  border: 0;
+  padding: 14px;
+  font-size: 15px;
+  font-weight: normal;
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  -webkit-transition: -webkit-box-shadow .15s ease;
+  transition: -webkit-box-shadow .15s ease;
+  transition: box-shadow .15s ease;
+  transition: box-shadow .15s ease, -webkit-box-shadow .15s ease;
+  outline: none;
+}
+
+.sidebar .search-input:hover {
+  background-color: rgb(41, 47, 61);
+}
+
+.sidebar .search-input:focus {
+  -webkit-box-shadow: 0 0 0 1px rgba(255, 255, 255, .5) inset;
+          box-shadow: 0 0 0 1px rgba(255, 255, 255, .5) inset;
+}
+
+.full-width .sidebar {
+  -webkit-transform: translateX(-270px);
+          transform: translateX(-270px);
+  will-change: transform;
+}
+
+.full-width .content {
+  margin-left: 0;
+}
+
+.content {
+  font-family: Merriweather, 'Book Antiqua', Georgia, 'Century Schoolbook', serif;
+  font-size: 1em;
+  line-height: 1.6875em;
+  width: 100%;
+  margin-left: 270px;
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+  height: 100%;
+  position: relative;
+  z-index: 3;
+  padding: 0 32px;
+  padding: 0 2rem;
+  -webkit-transition: margin ease-in-out .25s;
+  transition: margin ease-in-out .25s;
+  will-change: margin-left;
+}
+
+.content h1,.content h2,.content h3,.content h4,.content h5,.content h6 {
+  font-family: Lato, sans-serif;
+  font-weight: 700;
+  line-height: 1.5em;
+  word-wrap: break-word;
+}
+
+.content h1 {font-size:2em; margin:1em 0 .5em}
+.content h1.heading {color: #666; margin: 1em 0 .5em}
+.content h1 small {font-weight:300}
+.content h1 a.view-source {font-size:19.2px;font-size:1.2rem}
+.content h2 {font-size:1.6em;margin:1em 0 .5em;font-weight:700}
+.content h3 {font-size:1.375em; margin:1em 0 .5em; font-weight:700}
+.content .page a {color:#000;text-decoration:none;text-shadow:.03em 0 #fff,-.03em 0 #fff,0 .03em #fff,0 -.03em #fff,.06em 0 #fff,-.06em 0 #fff,.09em 0 #fff,-.09em 0 #fff,.12em 0 #fff,-.12em 0 #fff,.15em 0 #fff,-.15em 0 #fff;background-image:-webkit-gradient(linear,left top, left bottom,from(#fff),to(#fff)),-webkit-gradient(linear,left top, left bottom,from(#fff),to(#fff)),-webkit-gradient(linear,left top, left bottom,from(#000),to(#000));background-image:linear-gradient(#fff,#fff),linear-gradient(#fff,#fff),linear-gradient(#000,#000);background-size:.05em 1px,.05em 1px,1px 1px;background-repeat:no-repeat,no-repeat,repeat-x;background-position:0 90%,100% 90%,0 90%}
+.content a:selection {text-shadow:.03em 0 #b4d5fe,-.03em 0 #b4d5fe,0 .03em #b4d5fe,0 -.03em #b4d5fe,.06em 0 #b4d5fe,-.06em 0 #b4d5fe,.09em 0 #b4d5fe,-.09em 0 #b4d5fe,.12em 0 #b4d5fe,-.12em 0 #b4d5fe,.15em 0 #b4d5fe,-.15em 0 #b4d5fe;background:#b4d5fe}
+.content a:-moz-selection {text-shadow:.03em 0 #b4d5fe,-.03em 0 #b4d5fe,0 .03em #b4d5fe,0 -.03em #b4d5fe,.06em 0 #b4d5fe,-.06em 0 #b4d5fe,.09em 0 #b4d5fe,-.09em 0 #b4d5fe,.12em 0 #b4d5fe,-.12em 0 #b4d5fe,.15em 0 #b4d5fe,-.15em 0 #b4d5fe;background:#b4d5fe}
+.content a *,.content a :after,.content a :before,.content a:after,.content a:before {text-shadow:none}
+.content a:visited {color:#000}
+.content ul li {line-height:1.5em}
+.content ul li>p {margin:0}
+.content blockquote {font-style:italic;margin:.5em 0;padding:.25em 1.5em;border-left:3px solid #e1e1e1;display:inline-block}
+.content blockquote :first-child {padding-top:0;margin-top:0}
+.content blockquote :last-child {padding-bottom:0;margin-bottom:0}
+.content a.no-underline,.content pre a {color:#9768d1;text-shadow:none;text-decoration:none;background-image:none}
+.content a.no-underline:active,.content a.no-underline:focus,.content a.no-underline:hover,.content a.no-underline:visited,.content pre a:active,.content pre a:focus,.content pre a:hover,.content pre a:visited {color:#9768d1;text-decoration:none}
+.content code {font-weight:400;background-color:#f7f9fc;vertical-align:baseline;border-radius:2px;padding:.1em .2em;border:1px solid #d2ddee}
+.content pre {margin:1.5em 0}
+
+.content .page {
+  padding: 15px 0;
+  -webkit-transition: all .2s linear;
+  transition: all .2s linear;
+  /* min-height: 100%; */
+  opacity: 1;
+}
+
+.content .page.hide {
+  display: none;
+  opacity: 0;
+}
+
+.footer {
+  color: #999;
+  font-size: .8em;
+  font-style: italic;
+  text-align: center;
+  margin: 30px 0;
+}
+
+.footer a, .footer a:visited {
+  color: #888;
+}
+
+
+.footer a:hover {
+  color: #444;
+}
+
+.tools {
+  opacity: .6;
+  top: 4px;
+  left: 6px;
+  position: absolute;
+  -webkit-transition: opacity .15s linear;
+  transition: opacity .15s linear;
+}
+
+.tools:hover {
+  opacity: .9;
+}
+
+.tools.hide, .search-input.hide {
+  display: none;
+}
+
+.tools button {
+  color: #373f52;
+  float: left;
+  font-size: 16px;
+  height: 30px;
+  width: 30px;
+  margin: 0;
+  background: transparent;
+  margin-right: 4px;
+  font-weight: 300;
+  border: none;
+  line-height: 0;
+  -webkit-transition: background .2s ease;
+  transition: background .2s ease;
+  outline: none;
+}
+
+.tools button:hover {
+  background: rgba(0, 0, 0, .05);
+  cursor: pointer;
+}
+
+.raindrop.icon {
+  color: #373f52;
+  position: absolute;
+  margin-left: 3px;
+  margin-top: -3px;
+  width: 10px;
+  height: 10px;
+  border: solid 1px currentColor;
+  border-radius: 6px 6px 6px 0;
+  -webkit-transform: rotate(135deg);
+          transform: rotate(135deg);
+}
+
+.dark .content {
+  color: #d5dae6;
+  background: rgb(31, 35, 46);
+}
+
+.dark .content code {
+  background-color: rgb(41, 47, 61);
+}
+
+.dark .tools button, .dark .tools button .icon {
+  color: #d5dae6;
+}
+
+.highlight {
+  background: rgba(255, 252, 53, .5);
+}
+
+.sidebar a.highlight {
+  background: rgba(255, 252, 53, .4);
+}
+
+.sidebar .highlight:hover {
+  background: rgba(255, 252, 53, .6);
+}
+
+  </style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.9.0-alpha1/katex.min.css" integrity="sha384-8QOKbPtTFvh/lMY0qPVbXj9hDh+v8US0pD//FcoYFst2lCIf0BmT58+Heqj0IGyx" crossorigin="anonymous">
+</head>
+<body>
+  <div class="main">
+    <section class="sidebar">
+      <div class="header">
+        <img class="logo" src="data:image/png;base64,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" />
+        <h1>Netium</h1>
+        <span>0.1.0</span>
+      </div>
+
+      <ul class="menu">
+        <li><a href="#">Netium documentation</a></li>
+        <li>
+          <a href="#Part1">Part1</a>
+          <ul>
+            <li><a href="#"></a></li>
+            <li><a href="#"></a></li>
+            <li><a href="#">Part I: The Front-End Practice</a></li>
+          </ul>
+        </li>
+        <li><a href="#aaa">aaa</a></li>
+        <li><a href="#">zaaaa</a></li>
+        <li>
+          <a href="#sub">sub</a>
+          <ul>
+            <li><a href="#"></a></li>
+            <li><a href="#"></a></li>
+          </ul>
+        </li>
+      </ul>
+
+      <input class="search-input hide" placeholder="search"></input>
+    </section>
+
+    <section class="content">
+      <div class="tools hide">
+        <button class="toggle-sidebar">☰</button>
+        <button class="toggle-light">
+          <div class="raindrop icon"></div>
+        </button>
+        <button class="previous-page"><</button>
+        <button class="next-page">></button>
+      </div>
+
+      <div class="page" id="">
+        <h1 class="heading">Netium documentation</h1>
+        <h1>Welcome to netium documentation</h1>
+<p>foo bar qweq</p>
+<pre><code class="language-js">function() {
+    // &lt;a class=&quot;lol&quot;&gt;aa&lt;/a&gt;
+    return 'some super classy code'; // lol
+}
+</code></pre>
+<p>Please go to <a href="#Part1">Part1 :D</a></p>
+<blockquote>
+<p>lol return nothing</p>
+</blockquote>
+<p>Ecto is split into 4 main components:</p>
+<ul>
+<li><code>Ecto.Repo</code> - repositories are wrappers around the data store. Via the repository, we can create, update, destroy and query existing entries. A repository needs an adapter and credentials to communicate to the database.</li>
+<li><code>Ecto.Schema</code> - schemas are used to map any data source into an Elixir struct. We will often use them to map tables into Elixir data but that’s one of their use cases and not a requirement for using Ecto.</li>
+</ul>
+<h2>Configuration</h2>
+<ul>
+<li><strong><code>name</code></strong> – Name of the project. It will be the main title for the html page.</li>
+<li><strong><code>version</code></strong> – Version of the project.</li>
+<li><strong><code>logo</code></strong> – Main logo of the project.</li>
+<li><strong><code>icon</code></strong> – Icon of the project, will typically be used for the favicon of the htmlpage.</li>
+<li><strong><code>footer</code></strong> – The content of the footer.</li>
+<li><strong><code>template</code></strong> – By default Documentator uses the <em>alchemy</em> template. To use a custom template path, start with <code>./</code> for a relative path or <code>/</code> for an absolute path.
+<ul>
+<li><em>Example</em> – <code>template: ./mytemplate</code></li>
+</ul>
+</li>
+<li><strong><code>htmlHeader</code></strong> – List of html element to add in the header</li>
+<li><strong><code>htmlBody</code></strong> – List of html element to add in the body</li>
+</ul>
+<p>$$f(x)$$</p>
+<p>$$f(x) = \int_{-\infty}^\infty
+\hat f(\xi),e^{2 \pi i \xi x}
+,d\xi$$</p>
+
+      </div>
+
+      <div class="page" id="Part1">
+        <h1 class="heading">Part1</h1>
+        
+      </div>
+
+      <div class="page" id="">
+        <h1 class="heading"></h1>
+        <p>Below is a list and description of various front-end job titles. The common, or most used (i.e., generic), title for a front-end developer is, &quot;front-end developer&quot; or &quot;front-end engineer&quot;. Note that any job that contains the word &quot;front-end&quot;, &quot;client-side&quot;, &quot;web UI&quot;, &quot;HTML&quot;, &quot;CSS&quot;, or &quot;JavaScript&quot; typically infers that a person has some degree of HTML, CSS, DOM, and JavaScript professional know how.</p>
+
+      </div>
+      <div class="page" id="">
+        <h1 class="heading"></h1>
+        <p>The following core web technologies are employed by front-end developers (consider learning them in this order):</p>
+<ol>
+<li>Uniform Resource Locators (aka URLs)</li>
+<li>Hypertext Transfer Protocol (aka HTTP)</li>
+<li>Hyper Text Markup Language (aka HTML)</li>
+<li>Cascading Style Sheets (aka CSS)</li>
+<li>JavaScript Programming Language (aka ECMAScript 262)</li>
+<li>JavaScript Object Notation (aka JSON)</li>
+<li>Document Object Model (aka DOM)</li>
+<li>Web APIs (aka HTML5 and friends or Browser APIs)</li>
+<li>Web Content Accessibility Guidelines (aka WCAG) &amp; Accessible Rich Internet Applications (aka ARIA)</li>
+</ol>
+
+      </div>
+      <div class="page" id="">
+        <h1 class="heading">Part I: The Front-End Practice</h1>
+        <p>Part one broadly describes the practice of front-end engineering.</p>
+
+      </div>
+      <div class="page" id="aaa">
+        <h1 class="heading">aaa</h1>
+        
+      </div>
+
+      <div class="page" id="">
+        <h1 class="heading">zaaaa</h1>
+        <h1>END</h1>
+<h2>bla bla</h2>
+<p>THE Antho is in the place :D</p>
+<pre><code class="language-php">&lt;?php
+echo lol;
+</code></pre>
+
+      </div>
+
+      <div class="page" id="sub">
+        <h1 class="heading">sub</h1>
+        
+      </div>
+
+      <div class="page" id="">
+        <h1 class="heading"></h1>
+        <h1>FAQ</h1>
+<ol>
+<li>iugguiugi</li>
+<li>3u7gf6f6</li>
+</ol>
+
+      </div>
+      <div class="page" id="">
+        <h1 class="heading"></h1>
+        <h1>I Dont Know</h1>
+<p>Je ne sais pas</p>
+
+      </div>
+
+      <footer class="footer">
+        Build with <a href="https://github.com/BafS/Documentor">Documentor</a> 0.0.2
+      </footer>
+    </section>
+  </div>
+  <script>
+    'use strict';function _toConsumableArray(arr){if(Array.isArray(arr)){for(var i=0,arr2=Array(arr.length);i<arr.length;i++){arr2[i]=arr[i]}return arr2}else{return Array.from(arr)}}/**
+ * Get the current hash (without the leading #)
+ * @returns {string}
+ */var currentHash=function currentHash(){return window.location.hash.substr(1)||''};/**
+ * Get all pages element
+ * @returns {Element[]}
+ */var getPageElements=function getPageElements(){return[].concat(_toConsumableArray(document.querySelectorAll('.content .page')))};var pageEls=getPageElements();/**
+ * Get current page index from an hash string
+ * @param {number} hash
+ */var getCurrentPageIndex=function getCurrentPageIndex(hash){return pageEls.findIndex(function(page,i){return page.id===hash||i===0&&hash===''})};/**
+ * Display class from hash string
+ * @param {string} hash
+ */var showPageFromHash=function showPageFromHash(hash){var activeIndex=0;pageEls.forEach(function(page,i){if(page.id===hash||i===0&&hash===''){activeIndex=i;page.classList.remove('hide')}else{page.classList.add('hide')}});return activeIndex};/**
+ * Toggle class for an element
+ * @param {Element} element
+ * @param {string} className
+ */var toggleClass=function toggleClass(element,className){if(element.classList!==null&&element.classList.contains(className)){element.classList.remove(className)}else{element.classList.add(className)}};/**
+ * Highlight the given word
+ * @param {Element} root
+ * @param {string} word
+ * @param {string} [className='highlight'] className
+ */function highlightWord(root,word){var className=arguments.length>2&&arguments[2]!==undefined?arguments[2]:'highlight';var excludeElements=['script','style','iframe','canvas'];var found=false;/**
+   * @returns {Node[]}
+   */var textNodesUnder=function textNodesUnder(){var walk=document.createTreeWalker(root,NodeFilter.SHOW_TEXT,null,false);var text=[];while(walk.nextNode()){if(excludeElements.indexOf(walk.currentNode.parentElement.tagName.toLowerCase())<0){text.push(walk.currentNode)}}return text};/**
+   * Highlight words
+   * @param {Node} n
+   * @returns {boolean}
+   */var highlightWords=function highlightWords(n){var indexOfNode=function indexOfNode(node,i){return node.nodeValue.toLowerCase().indexOf(word.toLowerCase(),i)};var after=void 0;var span=void 0;var i=indexOfNode(n);if(!found&&i>-1){found=true}while(i>-1){after=n.splitText(i+word.length);span=document.createElement('span');span.className=className;span.appendChild(n.splitText(i));after.parentNode.insertBefore(span,after);n=after;i=indexOfNode(after,i)}};textNodesUnder().forEach(highlightWords);return found}/**
+ * Remove highlight from elements
+ * @param {Element[]} elements
+ */var removeHighlight=function removeHighlight(elements){elements.forEach(function(el){var prev=el.previousSibling;var next=el.nextSibling;prev.textContent+=el.textContent+next.textContent;el.parentNode.removeChild(next);el.parentNode.removeChild(el)})};var sidebarLinks=document.querySelectorAll('.sidebar ul li a');/**
+ * Highlight sidebar link
+ * @param {number} index
+ */var addClassSidebarIndex=function addClassSidebarIndex(index,className){sidebarLinks[index].classList.add(className)};/**
+ * Remove highlights from sidebar
+ */var removeClassesSidebar=function removeClassesSidebar(className){sidebarLinks.forEach(function(link){return link.classList.remove(className)})};var toggleActiveLinkSidebar=function toggleActiveLinkSidebar(index){sidebarLinks.forEach(function(link,i){if(i===index){link.classList.add('active')}else{link.classList.remove('active')}})};var main=document.querySelector('.main');document.querySelector('button.toggle-sidebar').onclick=function(){toggleClass(main,'full-width')};document.querySelector('button.toggle-light').onclick=function(){toggleClass(main,'dark')};document.querySelector('button.next-page').onclick=function(){var nextIndex=Math.min(getCurrentPageIndex(currentHash())+1,pageEls.length-1);window.location.hash='#'+pageEls[nextIndex].id};document.querySelector('button.previous-page').onclick=function(){var prevIndex=Math.max(0,getCurrentPageIndex(currentHash())-1);window.location.hash='#'+pageEls[prevIndex].id};document.querySelector('.tools').classList.remove('hide');var searchInputEl=document.querySelector('.search-input');searchInputEl.classList.remove('hide');var highlightClass='highlight';searchInputEl.addEventListener('keypress',function(e){var key=e.which||e.keyCode;if(key===13){removeHighlight([].concat(_toConsumableArray(document.querySelectorAll('.content .highlight'))));removeClassesSidebar(highlightClass);pageEls.forEach(function(el,pIndex){if(highlightWord(el,searchInputEl.value)){addClassSidebarIndex(pIndex,highlightClass)}})}});searchInputEl.addEventListener('keyup',function(e){var key=e.which||e.keyCode;if(key!==13&&searchInputEl.value.length<1){removeHighlight([].concat(_toConsumableArray(document.querySelectorAll('.content .'+highlightClass))));removeClassesSidebar(highlightClass)}});var showPageFromCurrentHash=function showPageFromCurrentHash(){var index=showPageFromHash(currentHash());toggleActiveLinkSidebar(index)};// Listen for hash change
+window.onhashchange=function(){showPageFromCurrentHash()};showPageFromCurrentHash();
+  </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.9.0-alpha1/katex.min.js" integrity="sha384-GR8SEkOO1rBN/jnOcQDFcFmwXAevSLx7/Io9Ps1rkxWp983ZIuUGfxivlF/5f5eJ" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.9.0-alpha1/contrib/auto-render.min.js" integrity="sha384-cXpztMJlr2xFXyDSIfRWYSMVCXZ9HeGXvzyKTYrn03rsMAlOtIQVzjty5ULbaP8L" crossorigin="anonymous"></script>
+    <script>renderMathInElement(document.querySelector(".content"))</script>
+</body>
+</html>
