@@ -1,12 +1,11 @@
 import test from 'ava';
-
-const {
+import {
   removeLeadingNumber,
   humanizesSlug,
   strToSlug,
   getBasename,
   getExtension,
-} = require('../src/helpers');
+} from '../src/helpers';
 
 test('test removeLeadingNumber function', (t) => {
   // it should remove the leading number
@@ -18,7 +17,6 @@ test('test removeLeadingNumber function', (t) => {
   t.is(removeLeadingNumber('_FAQ'), '_FAQ');
   t.is(removeLeadingNumber('ThisIsATest'), 'ThisIsATest');
 });
-
 
 test('test humanizesSlug function', (t) => {
   // it should humanize slug
