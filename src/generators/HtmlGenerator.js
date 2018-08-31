@@ -1,5 +1,5 @@
 const fs = require('fs');
-const babel = require('babel-core');
+const babel = require('@babel/core');
 const Handlebars = require('handlebars');
 const postcss = require('postcss');
 const path = require('path');
@@ -38,7 +38,7 @@ module.exports = class HtmlGenerator {
       return new Promise((resolve, reject) => {
         babel.transformFile(`${this.templatePath}/main.js`, {
           minified: true,
-          presets: ['env'],
+          presets: ['@babel/preset-env'],
         }, (err, res) => {
           if (err) {
             reject(err);
