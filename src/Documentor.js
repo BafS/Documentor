@@ -1,6 +1,6 @@
 const fs = require('fs');
 const chokidar = require('chokidar');
-const { getBasename, getExtension, humanizesSlug } = require('./helpers');
+const { getBasename, getExtension, humanizesSlug, escapeRegExp } = require('./helpers');
 const generators = require('./generators');
 const parsers = require('./parsers');
 const packageObj = require('../package.json');
@@ -109,8 +109,14 @@ module.exports = class Documentor {
    * @param {(type: string, pathname: string, generation: Promise<void>) => {}} callback
    */
   async watch(outputFile, callback) {
+    let additionalRegex = '';
+    if (outputFile.startsWith(this.dir)) {
+      const fileLastPart = outputFile.substr(this.dir.length);
+      additionalRegex = `|${escapeRegExp(fileLastPart)}`;
+    }
+
     const watcher = chokidar.watch([this.dir], {
-      ignored: /(^|[/\\])\..|\.ya?ml$/,
+      ignored: new RegExp(`(^|[/\\\\])\\..|\\.ya?ml${additionalRegex}$`),
       persistent: true,
       ignoreInitial: true,
     });
