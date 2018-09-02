@@ -25,15 +25,29 @@ The title of the page is generated from the file name. The file name will be dec
 ```
 
 
-# Markdown Files Header
+# Markdown Files
 
-If you want to force a specific title you can simply add the `title` variable in the head of your markdown file.
+Markdown support the [CommonMark spec](https://spec.commonmark.org/) and table (GFM).
 
-Example
+## Header
+
+An optional header can be specified to override predefined variables.
+
+The header must be the on top on the files, separated by `---`, in a [yaml](http://yaml.org/) format.
+
+### Available variables
+
+| Variable   | Default                              | Description                                  |
+|------------|--------------------------------------|----------------------------------------------|
+| `title`    | File name, decamelized with caps     | Set a specific title                         |
+| `slug`     | File name                            | To define the slug in the url (after the `#`) |
+
+### Example
 
 ```md
 ---
 title: Introduction
+slug: intro
 ---
 
 Lorem ipsum...

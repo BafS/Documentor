@@ -191,7 +191,7 @@ a {
 .content h1 small {font-weight:300}
 .content h1 a.view-source {font-size:19.2px;font-size:1.2rem}
 .content h2 {font-size:1.6em;margin:1em 0 .5em;font-weight:700}
-.content h3 {font-size:1.375em; margin:1em 0 .5em; font-weight:700}
+.content h3 {font-size:1.3em; margin:1em 0 .5em; font-weight:700}
 .content .page a {color:#000;}
 .content a *,.content a :after,.content a :before,.content a:after,.content a:before {text-shadow:none}
 .content a:visited {color:#000}
@@ -205,6 +205,18 @@ a {
 .content code {font-weight:400;background-color:#f7f9fc;vertical-align:baseline;border-radius:2px;padding:.1em .2em;border:1px solid #d2ddee}
 .content pre {margin:1.5em 0}
 .content img {max-width: 100%}
+
+.content table {
+  border-collapse: collapse;
+  width: 100%;
+}
+
+.content th, .content td {
+  padding: 4.8px 8px;
+  padding: 0.3rem 0.5rem;
+  text-align: left;
+  border-bottom: 1px solid #e1e1e1;
+}
 
 .content .page {
   padding: 15px 0;
@@ -312,6 +324,7 @@ a {
 .sidebar .highlight:hover {
   background: rgba(255, 252, 53, .6);
 }
+
 
   </style>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/default.min.css">
@@ -444,11 +457,37 @@ yarn global add documentor
         ├── 0_Action.md
         └── 1_Reaction.md
 </code></pre>
-<h1>Markdown Files Header</h1>
-<p>If you want to force a specific title you can simply add the <code>title</code> variable in the head of your markdown file.</p>
-<p>Example</p>
+<h1>Markdown Files</h1>
+<p>Markdown support the <a href="https://spec.commonmark.org/">CommonMark spec</a> and table (GFM).</p>
+<h2>Header</h2>
+<p>An optional header can be specified to override predefined variables.</p>
+<p>The header must be the on top on the files, separated by <code>---</code>, in a <a href="http://yaml.org/">yaml</a> format.</p>
+<h3>Available variables</h3>
+<table>
+<thead>
+<tr>
+<th>Variable</th>
+<th>Default</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>title</code></td>
+<td>File name, decamelized with caps</td>
+<td>Set a specific title</td>
+</tr>
+<tr>
+<td><code>slug</code></td>
+<td>File name</td>
+<td>To define the slug in the url (after the <code>#</code>)</td>
+</tr>
+</tbody>
+</table>
+<h3>Example</h3>
 <pre><code class="language-md">---
 title: Introduction
+slug: intro
 ---
 
 Lorem ipsum...
@@ -457,7 +496,8 @@ Lorem ipsum...
       </div>
       <div class="page" id="3_Configuration">
         <h1 class="heading">Configuration</h1>
-        <p>By default, Documentor will read <code>_config.yml</code> in the root folder of the documentation but you can pass <code>-c</code> or <code>--config</code> to use your own config path (see the <a href="#2_Usage/0_CommandLine">Command Line Usage</a> for more information).</p>
+        <p>By default, Documentor will read <code>_config.yml</code> in the root folder of the documentation but you can
+pass <code>-c</code> or <code>--config</code> to use your own config path (see the <a href="#2_Usage/0_CommandLine">Command Line Usage</a> for more information).</p>
 <h1>Options</h1>
 <ul>
 <li><strong><code>name</code></strong> – Name of the project. It will be the main title for the html page.</li>
@@ -513,19 +553,19 @@ icon: _assets/icon.png
     </section>
   </div>
   <script>
-    'use strict';function _toConsumableArray(arr){if(Array.isArray(arr)){for(var i=0,arr2=Array(arr.length);i<arr.length;i++){arr2[i]=arr[i]}return arr2}else{return Array.from(arr)}}/**
+    "use strict";function _toConsumableArray(arr){return _arrayWithoutHoles(arr)||_iterableToArray(arr)||_nonIterableSpread()}function _nonIterableSpread(){throw new TypeError("Invalid attempt to spread non-iterable instance")}function _iterableToArray(iter){if(Symbol.iterator in Object(iter)||Object.prototype.toString.call(iter)==="[object Arguments]")return Array.from(iter)}function _arrayWithoutHoles(arr){if(Array.isArray(arr)){for(var i=0,arr2=new Array(arr.length);i<arr.length;i++){arr2[i]=arr[i]}return arr2}}/**
  * Get the current hash (without the leading #)
  * @returns {string}
- */var currentHash=function currentHash(){return window.location.hash.substr(1)||''};/**
+ */var currentHash=function currentHash(){return window.location.hash.substr(1)||""};/**
  * Get all pages element
  * @returns {Element[]}
- */var getPageElements=function getPageElements(){return[].concat(_toConsumableArray(document.querySelectorAll('.content .page')))};var pageEls=getPageElements();/**
+ */var getPageElements=function getPageElements(){return _toConsumableArray(document.querySelectorAll(".content .page"))};var pageEls=getPageElements();/**
  * Get current page index from an hash string
  * @param {number} hash
- */var getCurrentPageIndex=function getCurrentPageIndex(hash){return pageEls.findIndex(function(page,i){return page.id===hash||i===0&&hash===''})};/**
+ */var getCurrentPageIndex=function getCurrentPageIndex(hash){return pageEls.findIndex(function(page,i){return page.id===hash||i===0&&hash===""})};/**
  * Display class from hash string
  * @param {string} hash
- */var showPageFromHash=function showPageFromHash(hash){var activeIndex=0;pageEls.forEach(function(page,i){if(page.id===hash||i===0&&hash===''){activeIndex=i;page.classList.remove('hide')}else{page.classList.add('hide')}});return activeIndex};/**
+ */var showPageFromHash=function showPageFromHash(hash){var activeIndex=0;pageEls.forEach(function(page,i){if(page.id===hash||i===0&&hash===""){activeIndex=i;page.classList.remove("hide")}else{page.classList.add("hide")}});return activeIndex};/**
  * Toggle class for an element
  * @param {Element} element
  * @param {string} className
@@ -534,21 +574,21 @@ icon: _assets/icon.png
  * @param {Element} root
  * @param {string} word
  * @param {string} [className='highlight'] className
- */function highlightWord(root,word){var className=arguments.length>2&&arguments[2]!==undefined?arguments[2]:'highlight';var excludeElements=['script','style','iframe','canvas'];var found=false;/**
+ */function highlightWord(root,word){var className=arguments.length>2&&arguments[2]!==undefined?arguments[2]:"highlight";var excludeElements=["script","style","iframe","canvas"];var found=false;/**
    * @returns {Node[]}
    */var textNodesUnder=function textNodesUnder(){var walk=document.createTreeWalker(root,NodeFilter.SHOW_TEXT,null,false);var text=[];while(walk.nextNode()){if(excludeElements.indexOf(walk.currentNode.parentElement.tagName.toLowerCase())<0){text.push(walk.currentNode)}}return text};/**
    * Highlight words
    * @param {Node} n
    * @returns {boolean}
-   */var highlightWords=function highlightWords(n){var indexOfNode=function indexOfNode(node,i){return node.nodeValue.toLowerCase().indexOf(word.toLowerCase(),i)};var after=void 0;var span=void 0;var i=indexOfNode(n);if(!found&&i>-1){found=true}while(i>-1){after=n.splitText(i+word.length);span=document.createElement('span');span.className=className;span.appendChild(n.splitText(i));after.parentNode.insertBefore(span,after);n=after;i=indexOfNode(after,i)}};textNodesUnder().forEach(highlightWords);return found}/**
+   */var highlightWords=function highlightWords(n){var indexOfNode=function indexOfNode(node,i){return node.nodeValue.toLowerCase().indexOf(word.toLowerCase(),i)};var after;var span;var i=indexOfNode(n);if(!found&&i>-1){found=true}while(i>-1){after=n.splitText(i+word.length);span=document.createElement("span");span.className=className;span.appendChild(n.splitText(i));after.parentNode.insertBefore(span,after);n=after;i=indexOfNode(after,i)}};textNodesUnder().forEach(highlightWords);return found}/**
  * Remove highlight from elements
  * @param {Element[]} elements
- */var removeHighlight=function removeHighlight(elements){elements.forEach(function(el){var prev=el.previousSibling;var next=el.nextSibling;prev.textContent+=el.textContent+next.textContent;el.parentNode.removeChild(next);el.parentNode.removeChild(el)})};var sidebarLinks=document.querySelectorAll('.sidebar ul li a');/**
+ */var removeHighlight=function removeHighlight(elements){elements.forEach(function(el){var prev=el.previousSibling;var next=el.nextSibling;prev.textContent+=el.textContent+next.textContent;el.parentNode.removeChild(next);el.parentNode.removeChild(el)})};var sidebarLinks=document.querySelectorAll(".sidebar ul li a");/**
  * Highlight sidebar link
  * @param {number} index
  */var addClassSidebarIndex=function addClassSidebarIndex(index,className){sidebarLinks[index].classList.add(className)};/**
  * Remove highlights from sidebar
- */var removeClassesSidebar=function removeClassesSidebar(className){sidebarLinks.forEach(function(link){return link.classList.remove(className)})};var toggleActiveLinkSidebar=function toggleActiveLinkSidebar(index){sidebarLinks.forEach(function(link,i){if(i===index){link.classList.add('active')}else{link.classList.remove('active')}})};var main=document.querySelector('.main');document.querySelector('button.toggle-sidebar').onclick=function(){toggleClass(main,'full-width')};document.querySelector('button.toggle-light').onclick=function(){toggleClass(main,'dark')};document.querySelector('button.next-page').onclick=function(){var nextIndex=Math.min(getCurrentPageIndex(currentHash())+1,pageEls.length-1);window.location.hash='#'+pageEls[nextIndex].id};document.querySelector('button.previous-page').onclick=function(){var prevIndex=Math.max(0,getCurrentPageIndex(currentHash())-1);window.location.hash='#'+pageEls[prevIndex].id};document.querySelector('.tools').classList.remove('hide');var searchInputEl=document.querySelector('.search-input');searchInputEl.classList.remove('hide');var highlightClass='highlight';searchInputEl.addEventListener('keypress',function(e){var key=e.which||e.keyCode;if(key===13){removeHighlight([].concat(_toConsumableArray(document.querySelectorAll('.content .highlight'))));removeClassesSidebar(highlightClass);pageEls.forEach(function(el,pIndex){if(highlightWord(el,searchInputEl.value)){addClassSidebarIndex(pIndex,highlightClass)}})}});searchInputEl.addEventListener('keyup',function(e){var key=e.which||e.keyCode;if(key!==13&&searchInputEl.value.length<1){removeHighlight([].concat(_toConsumableArray(document.querySelectorAll('.content .'+highlightClass))));removeClassesSidebar(highlightClass)}});var showPageFromCurrentHash=function showPageFromCurrentHash(){var index=showPageFromHash(currentHash());toggleActiveLinkSidebar(index)};// Listen for hash change
+ */var removeClassesSidebar=function removeClassesSidebar(className){sidebarLinks.forEach(function(link){return link.classList.remove(className)})};var toggleActiveLinkSidebar=function toggleActiveLinkSidebar(index){sidebarLinks.forEach(function(link,i){if(i===index){link.classList.add("active")}else{link.classList.remove("active")}})};var main=document.querySelector(".main");document.querySelector("button.toggle-sidebar").onclick=function(){toggleClass(main,"full-width")};document.querySelector("button.toggle-light").onclick=function(){toggleClass(main,"dark")};document.querySelector("button.next-page").onclick=function(){var nextIndex=Math.min(getCurrentPageIndex(currentHash())+1,pageEls.length-1);window.location.hash="#".concat(pageEls[nextIndex].id)};document.querySelector("button.previous-page").onclick=function(){var prevIndex=Math.max(0,getCurrentPageIndex(currentHash())-1);window.location.hash="#".concat(pageEls[prevIndex].id)};document.querySelector(".tools").classList.remove("hide");var searchInputEl=document.querySelector(".search-input");searchInputEl.classList.remove("hide");var highlightClass="highlight";searchInputEl.addEventListener("keypress",function(e){var key=e.which||e.keyCode;if(key===13){removeHighlight(_toConsumableArray(document.querySelectorAll(".content .highlight")));removeClassesSidebar(highlightClass);pageEls.forEach(function(el,pIndex){if(highlightWord(el,searchInputEl.value)){addClassSidebarIndex(pIndex,highlightClass)}})}});searchInputEl.addEventListener("keyup",function(e){var key=e.which||e.keyCode;if(key!==13&&searchInputEl.value.length<1){removeHighlight(_toConsumableArray(document.querySelectorAll(".content .".concat(highlightClass))));removeClassesSidebar(highlightClass)}});var showPageFromCurrentHash=function showPageFromCurrentHash(){var index=showPageFromHash(currentHash());toggleActiveLinkSidebar(index)};// Listen for hash change
 window.onhashchange=function(){showPageFromCurrentHash()};showPageFromCurrentHash();
   </script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
