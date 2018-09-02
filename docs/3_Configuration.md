@@ -12,6 +12,8 @@ By default, Documentor will read `_config.yml` in the root folder of the documen
   - *Example* – `template: ./mytemplate`
 - **`htmlHeader`** – List of html element to add in the header
 - **`htmlBody`** – List of html element to add in the body
+- **`markdown-it`** – You can specified some options to the parser. Please read [Markdown-it doc](https://github.com/markdown-it/markdown-it#init-with-presets-and-options) for
+  more info.
 
 All fields are optionals.
 

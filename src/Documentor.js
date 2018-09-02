@@ -48,6 +48,7 @@ module.exports = class Documentor {
    */
   pagesTree(pathname, arr = []) {
     const dir = fs.readdirSync(pathname);
+    const parser = parsers.markdown(this.config);
     dir.forEach((name) => {
       const target = `${pathname}/${name}`;
 
@@ -60,11 +61,11 @@ module.exports = class Documentor {
           pageTarget = target.replace(re, '');
         }
 
-        arr.push(parsers.markdown(pageTarget, fs.readFileSync(target, 'utf8')));
+        arr.push(parser(pageTarget, fs.readFileSync(target, 'utf8')));
       } else if (stats.isDirectory() && name.substr(0, 1) !== '_') {
         const children = this.pagesTree(target);
         const indexBase = children.findIndex(page => getBasename(page.slug) === 'index');
-        const page = children[indexBase] || parsers.markdown(name);
+        const page = children[indexBase] || parser(name);
 
         if (children[indexBase]) {
           children.splice(indexBase, 1);
