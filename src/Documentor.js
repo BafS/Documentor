@@ -3,6 +3,7 @@ const chokidar = require('chokidar');
 const { getBasename, getExtension, humanizesSlug } = require('./helpers');
 const generators = require('./generators');
 const parsers = require('./parsers');
+const packageObj = require('../package.json');
 
 const output = (outputFile, out) => {
   if (!outputFile) {
@@ -27,7 +28,7 @@ module.exports = class Documentor {
     };
 
     const systemConfig = {
-      documentor_version: '0.1.0',
+      documentor_version: packageObj.version || '',
     };
 
     this.dir = dir.replace(/\/+$/, '/');
