@@ -6,7 +6,7 @@ const path = require('path');
 const cssNext = require('postcss-cssnext');
 const { getExtension, readFile } = require('../helpers');
 
-module.exports = class HtmlGenerator {
+module.exports = class {
   /**
    * Constructor
    * @param {string} dir
@@ -24,7 +24,7 @@ module.exports = class HtmlGenerator {
     }
 
     if (!fs.existsSync(`${this.templatePath}/base.html`)) {
-      throw Error(`Template '${this.templatePath}' is not a valid template`);
+      throw Error(`Template '${this.templatePath}' is not a valid template folder`);
     }
   }
 
