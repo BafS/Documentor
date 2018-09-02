@@ -1,8 +1,8 @@
 const fs = require('fs');
 const chokidar = require('chokidar');
-const Page = require('./Page');
 const { getBasename, getExtension, humanizesSlug } = require('./helpers');
 const generators = require('./generators');
+const parsers = require('./parsers');
 
 const output = (outputFile, out) => {
   if (!outputFile) {
@@ -58,11 +58,12 @@ module.exports = class Documentor {
           const re = new RegExp(`^${this.dir}\\/*`, '');
           pageTarget = target.replace(re, '');
         }
-        arr.push(Page.pageCreator(pageTarget, fs.readFileSync(target, 'utf8')));
+
+        arr.push(parsers.markdown(pageTarget, fs.readFileSync(target, 'utf8')));
       } else if (stats.isDirectory() && name.substr(0, 1) !== '_') {
         const children = this.pagesTree(target);
         const indexBase = children.findIndex(page => getBasename(page.slug) === 'index');
-        const page = children[indexBase] || Page.pageCreator(name);
+        const page = children[indexBase] || parsers.markdown(name);
 
         if (children[indexBase]) {
           children.splice(indexBase, 1);
