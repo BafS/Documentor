@@ -1,4 +1,4 @@
-<a href="https://bafs.github.io/Documentor" target="_blank"><img width="600" src="https://i.imgur.com/6Gjb6Gz.png" /></a>
+<a href="https://bafs.github.io/Documentor" target="_blank"><img width="560" src="https://i.imgur.com/6Gjb6Gz.png" /></a>
 
 > A super intuitive doc generator from Markdown files
 
@@ -17,7 +17,7 @@ documentor init  # initialisation of the documentation
 ```
 
 ```bash
-documentor ./myName -o output.html  # render the documentation to output.html
+documentor ./docs-folder -o output.html  # render the documentation to output.html
 ```
 
 # [Documentation](http://bafs.github.io/Documentor)
