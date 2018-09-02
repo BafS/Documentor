@@ -170,7 +170,7 @@ a {
 .content h1 small {font-weight:300}
 .content h1 a.view-source {font-size:1.2rem}
 .content h2 {font-size:1.6em;margin:1em 0 .5em;font-weight:700}
-.content h3 {font-size:1.375em; margin:1em 0 .5em; font-weight:700}
+.content h3 {font-size:1.3em; margin:1em 0 .5em; font-weight:700}
 .content .page a {color:#000;}
 .content a *,.content a :after,.content a :before,.content a:after,.content a:before {text-shadow:none}
 .content a:visited {color:#000}
@@ -184,6 +184,17 @@ a {
 .content code {font-weight:400;background-color:#f7f9fc;vertical-align:baseline;border-radius:2px;padding:.1em .2em;border:1px solid #d2ddee}
 .content pre {margin:1.5em 0}
 .content img {max-width: 100%}
+
+.content table {
+  border-collapse: collapse;
+  width: 100%;
+}
+
+.content th, .content td {
+  padding: 0.3rem 0.5rem;
+  text-align: left;
+  border-bottom: 1px solid #e1e1e1;
+}
 
 .content .page {
   padding: 15px 0;
@@ -288,3 +299,4 @@ a {
 .sidebar .highlight:hover {
   background: rgb(255, 252, 53, .6);
 }
+
