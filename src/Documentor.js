@@ -122,7 +122,7 @@ module.exports = class Documentor {
     });
 
     const generatorObj = this.generatorObject(outputFile);
-    const generatorFn = await generatorObj.generator();
+    const generatorFn = await generatorObj.generate();
     const regenerate = () => generatorFn(this.pagesTree(this.dir));
 
     const onChange = (type, pathname = null) => {
@@ -155,7 +155,7 @@ module.exports = class Documentor {
 
     const pagesTree = this.pagesTree(this.dir);
 
-    const out = (await generatorObj.generator())(pagesTree);
+    const out = (await generatorObj.generate())(pagesTree);
 
     return output(outputFile, out);
   }

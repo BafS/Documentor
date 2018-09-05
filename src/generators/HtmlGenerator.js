@@ -109,7 +109,7 @@ module.exports = class {
    * Html generator
    * @returns {Promise<(pages: Page[]) => string>}
    */
-  async generator() {
+  async generate() {
     const templateRaw = await readFile(`${this.templatePath}/base.html`, 'utf8');
     const template = Handlebars.compile(templateRaw);
     const data = await this.templateData();
