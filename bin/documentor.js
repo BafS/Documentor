@@ -21,6 +21,12 @@ const { argv } = yargs
   .alias('o', 'output')
   .nargs('o', 1)
   .describe('o', 'Write in file')
+  // .alias('f', 'from')
+  // .nargs('f', 1)
+  // .describe('f', 'Input format')
+  .alias('t', 'to')
+  .nargs('t', 1)
+  .describe('t', 'Output format')
   .recommendCommands()
   .alias('c', 'config')
   .nargs('c', 1)
@@ -70,6 +76,12 @@ if (argv.input === 'init') {
     };
   }
 
+  const { to } = argv;
+  config.format = {
+    // from,
+    to,
+  };
+
   const documentor = new Documentor(argv.input, config);
 
   if (argv.watch) {
@@ -90,4 +102,3 @@ if (argv.input === 'init') {
     }
   }
 }
-

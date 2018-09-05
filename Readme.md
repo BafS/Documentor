@@ -28,6 +28,7 @@ Please check the [**documentation**](http://bafs.github.io/Documentor) for more 
 
 - **`-i`**, **`--input`**: Input folder (optional flag)
 - **`-o`**, **`--output`**: Write in file
+- **`-t`**, **`--to`**: Output format
 - **`-c`**, **`--config`**: Configuration file
 - **`-w`**, **`--watch`**: Watch docs files with partial generation
 - **`-v`**, **`--verbose`**: Configuration file
