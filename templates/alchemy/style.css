@@ -291,15 +291,18 @@ a {
   color: var(--secondaryColor);
 }
 
-.highlight {
+
+.content .highlight {
   background: rgb(255, 252, 53, .5);
 }
 
-.sidebar a.highlight {
-  background: rgb(255, 252, 53, .4);
+.sidebar a.highlight:after {
+  position: absolute;
+  content: " ";
+  height: 10px;
+  width: 10px;
+  background: rgb(255, 252, 53, .8);
+  border-radius: 9px;
+  right: 6%;
+  margin-top: 14px;
 }
-
-.sidebar .highlight:hover {
-  background: rgb(255, 252, 53, .6);
-}
-
