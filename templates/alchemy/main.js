@@ -48,7 +48,6 @@ const toggleClass = (element, className) => {
   }
 };
 
-
 /**
  * Highlight the given word
  * @param {Element} root
@@ -130,6 +129,7 @@ const addClassSidebarIndex = (index, className) => {
 
 /**
  * Remove highlights from sidebar
+ * @param {string} className
  */
 const removeClassesSidebar = (className) => {
   sidebarLinks.forEach(link => link.classList.remove(className));
