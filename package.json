@@ -1,9 +1,12 @@
 {
   "name": "documentor",
-  "version": "0.1.2",
+  "version": "0.1.3",
   "description": "Documentation generator",
   "main": "src",
   "license": "MIT",
+  "author": {
+    "name": "Fabien Sa"
+  },
   "bin": {
     "documentor": "./bin/documentor.js"
   },
