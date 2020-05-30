@@ -1,6 +1,11 @@
 const fs = require('fs');
 const chokidar = require('chokidar');
-const { getBasename, getExtension, humanizesSlug, escapeRegExp } = require('./helpers');
+const {
+  getBasename,
+  getExtension,
+  humanizesSlug,
+  escapeRegExp,
+} = require('./helpers');
 const generators = require('./generators');
 const parsers = require('./parsers');
 const packageObj = require('../package.json');
@@ -64,7 +69,7 @@ module.exports = class Documentor {
         arr.push(parser(pageTarget, fs.readFileSync(target, 'utf8')));
       } else if (stats.isDirectory() && name.substr(0, 1) !== '_') {
         const children = this.pagesTree(target);
-        const indexBase = children.findIndex(page => getBasename(page.slug) === 'index');
+        const indexBase = children.findIndex((page) => getBasename(page.slug) === 'index');
         const page = children[indexBase] || parser(name);
 
         if (children[indexBase]) {
@@ -141,9 +146,9 @@ module.exports = class Documentor {
     onChange('First generation');
 
     watcher
-      .on('add', pathname => onChange('add', pathname))
-      .on('change', pathname => onChange('change', pathname))
-      .on('unlink', pathname => onChange('unlink', pathname));
+      .on('add', (pathname) => onChange('add', pathname))
+      .on('change', (pathname) => onChange('change', pathname))
+      .on('unlink', (pathname) => onChange('unlink', pathname));
   }
 
   /**

@@ -2,16 +2,16 @@ const fs = require('fs');
 const path = require('path');
 
 const helpers = {
-  strToSlug: str => (
+  strToSlug: (str) => (
     str
       .replace(/^\.\//, '')
       .replace(/\.[^/.]+$/, '')
       .replace(/ /g, '')
   ),
 
-  removeLeadingNumber: slug => slug.replace(/^[0-9]+_(.+)/, '$1'),
+  removeLeadingNumber: (slug) => slug.replace(/^[0-9]+_(.+)/, '$1'),
 
-  humanizesSlug: name => (
+  humanizesSlug: (name) => (
     helpers
       .removeLeadingNumber(name)
       .replace(/_/g, ' ')
@@ -19,11 +19,11 @@ const helpers = {
       .replace(/([a-z])([A-Z])/g, (match, p1, p2) => `${p1} ${p2}`)
   ),
 
-  getExtension: filename => path.extname(filename).substr(1),
+  getExtension: (filename) => path.extname(filename).substr(1),
 
-  getBasename: filename => path.basename(filename, path.extname(filename)),
+  getBasename: (filename) => path.basename(filename, path.extname(filename)),
 
-  exists: async filePath => (
+  exists: async (filePath) => (
     new Promise((resolve, reject) => {
       fs.stat(filePath, (err, stats) => {
         if (err) {
@@ -47,7 +47,7 @@ const helpers = {
     })
   ),
 
-  escapeRegExp: str => (
+  escapeRegExp: (str) => (
     // https://github.com/sindresorhus/escape-string-regexp
     str.replace(/[|\\{}()[\]^$+*?.]/g, '\\$&')
   ),

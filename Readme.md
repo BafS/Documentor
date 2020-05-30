@@ -12,11 +12,11 @@ or for yarn users: `yarn global add documentor`
 
 ## Quick Usage
 
-```bash
+```sh
 documentor init  # initialisation of the documentation
 ```
 
-```bash
+```sh
 documentor ./docs-folder -o output.html  # render the documentation to output.html
 ```
 
@@ -39,38 +39,40 @@ Please check the [**documentation**](http://bafs.github.io/Documentor) for more 
 
 Generate `project.html` from `./docs` folder
 
-```bash
+```sh
 documentor ./docs -o out.html
 ```
 
 Output html to STDOUT from `./docs` folder and read the configuration file `conf.yml`
 
-```bash
+```sh
 documentor docs -c conf.yml
 ```
 
 Generate "out.html" with a custom name and footer
 
-```bash
+```sh
 documentor ./docs -o out.html --var.name "My Project" --var.footer "(c) Project 1.0"
 ```
 
 Watch the "docs" folder and regenerate "out.html" on change
 
-```bash
+```sh
 documentor docs -o out.html -w
 ```
 
 ## Dev
 
-```bash
-yarn install
+```sh
+npm i
 ```
+
+You can run the CLI version with `node bin/documentor.js`, for example `node bin/documentor.js ./docs -o out.html`.
 
 ### Test
 
-```bash
-yarn test
+```sh
+npm test
 ```
 
 # Screenshot
@@ -80,3 +82,4 @@ yarn test
 #### TODO
 
  - [ ] Embed images from markdown
+ - [ ] Add processing indicator

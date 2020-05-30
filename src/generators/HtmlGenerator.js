@@ -114,6 +114,6 @@ module.exports = class {
     const template = Handlebars.compile(templateRaw);
     const data = await this.templateData();
 
-    return pages => template({ ...data, pages });
+    return (pages) => template({ ...data, pages });
   }
 };
