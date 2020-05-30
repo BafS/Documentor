@@ -7,6 +7,7 @@
   "author": {
     "name": "Fabien Sa"
   },
+  "repository": "https://github.com/BafS/Documentor",
   "bin": {
     "documentor": "./bin/documentor.js"
   },
@@ -16,19 +17,18 @@
   "dependencies": {
     "@babel/core": "^7.0.0",
     "@babel/preset-env": "^7.0.0",
-    "chokidar": "^2.0.4",
+    "chokidar": "^3.4.0",
     "handlebars": "^4.0.11",
-    "inquirer": "^6.2.0",
+    "inquirer": "^7.1.0",
     "js-yaml": "^3.12.0",
-    "markdown-it": "^8.4.2",
-    "postcss": "^6.0.23",
-    "postcss-cssnext": "^3.1.0",
-    "yargs": "^12.0.1"
+    "markdown-it": "^11.0.0",
+    "postcss-preset-env": "^6.7.0",
+    "yargs": "^15.3.0"
   },
   "devDependencies": {
-    "ava": "1.0.0-beta.8",
-    "eslint": "^5.5.0",
-    "eslint-config-airbnb-base": "^13.1.0",
+    "ava": "^3.8.2",
+    "eslint": "^7.1.0",
+    "eslint-config-airbnb-base": "^14.1.0",
     "eslint-plugin-import": "^2.14.0"
   },
   "engines": {

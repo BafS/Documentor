@@ -1,11 +1,11 @@
-import test from 'ava';
-import {
+const test = require('ava');
+const {
   removeLeadingNumber,
   humanizesSlug,
   strToSlug,
   getBasename,
   getExtension,
-} from '../src/helpers';
+} = require('../src/helpers');
 
 test('test removeLeadingNumber function', (t) => {
   // it should remove the leading number

@@ -1,9 +1,8 @@
 const fs = require('fs');
 const babel = require('@babel/core');
 const Handlebars = require('handlebars');
-const postcss = require('postcss');
 const path = require('path');
-const cssNext = require('postcss-cssnext');
+const postcssPresetEnv = require('postcss-preset-env');
 const { getExtension, readFile } = require('../helpers');
 
 module.exports = class {
@@ -58,9 +57,11 @@ module.exports = class {
    * @returns {Promise<string>}
    */
   async generateStyle() {
-    if (fs.existsSync(`${this.templatePath}/style.css`)) {
-      const style = await readFile(`${this.templatePath}/style.css`, 'utf8');
-      return postcss([cssNext]).process(style).css;
+    const cssPath = `${this.templatePath}/style.css`;
+    if (fs.existsSync(cssPath)) {
+      const style = await readFile(cssPath, 'utf8');
+      return postcssPresetEnv.process(style, { from: cssPath })
+        .then((result) => result.css);
     }
 
     return false;

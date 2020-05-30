@@ -114,6 +114,10 @@ module.exports = class Documentor {
    * @param {(type: string, pathname: string, generation: Promise<void>) => {}} callback
    */
   async watch(outputFile, callback) {
+    if (!outputFile) {
+      throw new Error('Invalid output file');
+    }
+
     let additionalRegex = '';
     if (outputFile.startsWith(this.dir)) {
       const fileLastPart = outputFile.substr(this.dir.length);
