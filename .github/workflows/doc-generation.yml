@@ -7,20 +7,23 @@ on:
     branches: [ master ]
 
 jobs:
-  checkout-and-deploy:
+  publish:
     runs-on: ubuntu-latest
     steps:
-    - name: Checkout
-      uses: actions/checkout@master
-
-      - name: Install and Build 🔧
+      -
+        name: Checkout
+        uses: actions/checkout@v2
+      -
+        name: Install and Build 🔧
         run: |
           npm ci
           npm run build:doc
-
-    - name: Deploy to GitHub Pages 🚀
-      uses: Cecilapp/GitHub-Pages-deploy@master
-      env:
-        EMAIL: fabacrans@gmail.com
-        GH_TOKEN: ${{ secrets.ACCESS_TOKEN }}
-        BUILD_DIR: docs
+      -
+        name: Deploy to GitHub Pages 🚀
+        if: success()
+        uses: crazy-max/ghaction-github-pages@v2
+        with:
+          target_branch: gh-pages
+          build_dir: docs
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
