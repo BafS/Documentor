@@ -13,7 +13,8 @@
   },
   "scripts": {
     "test": "ava -v",
-    "style": "eslint src/** bin/**"
+    "style": "eslint src/** bin/**",
+    "build:doc": "node bin/documentor docs -o docs/index.html"
   },
   "dependencies": {
     "@babel/core": "^7.0.0",
