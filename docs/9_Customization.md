@@ -27,4 +27,3 @@ Documentor uses Postcss with [cssnext](http://cssnext.io/). You can thus uses th
 ## Javascript
 
 Javascript is transpiled with [Babel](https://babeljs.io/) to ECMAScript 5. You can use ECMAScript 6, modules, fat arrow etc.
-

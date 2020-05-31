@@ -1,4 +1,5 @@
 #!/usr/bin/env node
+/* eslint no-console: 0 */
 
 const fs = require('fs');
 const yaml = require('js-yaml');

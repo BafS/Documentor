@@ -12,7 +12,8 @@
     "documentor": "./bin/documentor.js"
   },
   "scripts": {
-    "test": "ava -v"
+    "test": "ava -v",
+    "style": "eslint src/** bin/**"
   },
   "dependencies": {
     "@babel/core": "^7.0.0",
