@@ -1,3 +1,5 @@
+/* eslint no-console: 0 */
+
 const fs = require('fs');
 const yaml = require('js-yaml');
 const inquirer = require('inquirer');
