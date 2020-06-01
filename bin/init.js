@@ -23,7 +23,7 @@ const contentFirstFile = `## Welcome to your brand new documentation
 To render this documentation (in index.html) run
 
 \`\`\`bash
-documentator ./{dir} -o index.html
+documentor ./{dir} -o index.html
 \`\`\`
 `;
 

@@ -8,7 +8,7 @@ By default, Documentor will read `_config.yml` in the root folder of the documen
 - **`logo`** – Main logo of the project.
 - **`icon`** – Icon of the project, will typically be used for the favicon of the html page.
 - **`footer`** – The content of the footer.
-- **`template`** – By default Documentator uses the *alchemy* template. To use a custom template path, start with `./` for a relative path or `/` for an absolute path.
+- **`template`** – By default Documentor uses the *alchemy* template. To use a custom template path, start with `./` for a relative path or `/` for an absolute path.
   - *Example* – `template: ./mytemplate`
 - **`htmlHeader`** – List of html element to add in the header
 - **`htmlBody`** – List of html element to add in the body
@@ -21,7 +21,7 @@ All fields are optionals.
 
 ```js
 name: Documentor
-version: 0.1.0
+version: 1.0.0
 logo: _assets/logo.png
 icon: _assets/icon.png
 ```

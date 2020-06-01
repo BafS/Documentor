@@ -1,10 +1,11 @@
-<a href="https://bafs.github.io/Documentor" target="_blank"><img width="560" src="https://i.imgur.com/6Gjb6Gz.png" /></a>
+<a href="https://bafs.github.io/Documentor" target="_blank"><img width="550"
+src="https://i.imgur.com/j8Bh0cv.png"/></a>
 
 > A super intuitive doc generator from Markdown files
 
 # Installation
 
-```bash
+```sh
 npm -g i documentor
 ```
 
@@ -19,6 +20,8 @@ documentor init  # initialisation of the documentation
 ```sh
 documentor ./docs-folder -o output.html  # render the documentation to output.html
 ```
+
+![https://i.imgur.com/whek9Zm.png](https://i.imgur.com/whek9Zm.png)
 
 # [Documentation](http://bafs.github.io/Documentor)
 
@@ -77,7 +80,7 @@ npm test
 
 # Screenshot
 
-<p align="center"><a href="https://bafs.github.io/Documentor" target="_blank"><img width="600" src="https://i.imgur.com/wErMEKf.png" /></a></p>
+<p align="center"><a href="https://bafs.github.io/Documentor" target="_blank"><img width="600" src="https://i.imgur.com/wErMEKf.png"/></a></p>
 
 #### TODO
 
