@@ -157,15 +157,20 @@ module.exports = class Documentor {
 
   /**
    * Generate documentation
+   * @param {string} outputFile
+   * @param {(message: string) => void} log
    * @returns {Promise<string>}
    */
-  async generate(outputFile = null) {
+  async generate(outputFile = null, log = () => {}) {
     const generatorObj = this.generatorObject(outputFile);
 
+    log(`Compile markdown files (from "${this.dir}")`);
     const pagesTree = this.pagesTree(this.dir);
 
+    log('Generate documentation');
     const out = (await generatorObj.generate())(pagesTree);
 
+    log(`Save output (to "${outputFile}")`);
     return output(outputFile, out);
   }
 };

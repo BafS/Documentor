@@ -11,9 +11,9 @@ console.time('time generation');
 
 const { argv } = yargs
   .usage('Usage: $0 <entry folder> [options]')
-  .example('$0 docs -o project.html', 'Generate "project.html" from "docs" folder')
-  .example('$0 docs -c conf.yml', 'Output html to STDOUT from "docs" folder and read the configuration file "conf.yml"')
-  .example('$0 docs -o out.html -w', 'Watch the "docs" folder and regenerate "out.html" on change')
+  .example('$0 docs -o project.html', 'Generate "project.html" from "docs/" folder')
+  .example('$0 docs -c conf.yml', 'Output html to STDOUT from "docs/" folder and read the configuration file "conf.yml"')
+  .example('$0 docs -o out.html -w', 'Watch the "docs/" folder and regenerate "out.html" on change')
   .example('$0 docs -o out.html --var.name "My Project"', 'Generate "out.html" with custom variables')
   .example('$0 init', 'Interactive way to initialize your documentation')
   .alias('i', 'input')
@@ -38,9 +38,12 @@ const { argv } = yargs
   .option('config')
   .alias('var', 'variable')
   .describe('var', 'Set or override config variable(s)')
+  .alias('q', 'quite')
+  .nargs('q', 0)
+  .describe('q', 'Do not output any message')
   .alias('v', 'verbose')
   .nargs('v', 0)
-  .describe('v', 'Configuration file')
+  .describe('v', 'Increase the verbosity')
   .help('h')
   .alias('h', 'help');
 
@@ -95,11 +98,9 @@ if (argv.input === 'init') {
       }
     });
   } else {
-    const res = documentor.generate(argv.output);
-    if (argv.verbose) {
-      res.then(() => {
-        console.timeEnd('time generation');
-      });
+    const res = documentor.generate(argv.output, argv.quite ? () => {} : console.info);
+    if (!argv.quite && argv.verbose) {
+      res.then(() => console.timeEnd('time generation'));
     }
   }
 }

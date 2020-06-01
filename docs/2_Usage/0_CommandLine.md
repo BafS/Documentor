@@ -3,7 +3,8 @@
 - **`-t`**, **`--to`**: Output format
 - **`-c`**, **`--config`**: Configuration file
 - **`-w`**, **`--watch`**: Watch docs files with partial generation
-- **`-v`**, **`--verbose`**: Configuration file
+- **`-q`**, **`--quite`**: Do not output any message
+- **`-v`**, **`--verbose`**: Increase the verbosity
 - **`--var`**, **`--variable`**: Set or override config variable(s)
 - **`-h`**, **`--help`**: Show help
 

@@ -11,7 +11,7 @@ module.exports = (config) => {
    * Parse the content and create a page object
    * @param {string} filename
    * @param {string} [data=''] data
-   * @returns Page
+   * @returns {Page}
    */
   return (filename, data = '') => {
     const slug = strToSlug(filename);
