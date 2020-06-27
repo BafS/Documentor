@@ -94,15 +94,15 @@ module.exports = class Documentor {
    * @returns {HtmlGenerator}
    */
   generatorObject(outputFile) {
-    const format = this.config.format.to || getExtension(outputFile || '');
+    const format = ((this.config.format || {}).to || getExtension(outputFile || '')).toLowerCase();
     if (!generators[format]) {
-      throw Error(`Invalid output format ('${format}')`);
+      throw new Error(`Invalid output format ('${format}')`);
     }
 
     const generatorObj = new generators[format](this.dir, this.config);
 
     if (!generatorObj.generate) {
-      throw Error(`The '${format}' generator is not valid (no 'generate' method in ${generatorObj.constructor.name})`);
+      throw new Error(`The '${format}' generator is not valid (no 'generate' method in ${generatorObj.constructor.name})`);
     }
 
     return generatorObj;
