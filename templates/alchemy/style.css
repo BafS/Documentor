@@ -311,3 +311,18 @@ hr {
   right: 6%;
   margin-top: 14px;
 }
+
+@media screen and (max-width: 768px) {
+  .content {
+    margin-left: 0;
+  }
+  .tools {
+    margin-left: 270px;
+  }
+  .full-width .content .tools {
+    margin-left: 0;
+  }
+  .full-width .sidebar {
+    transition: none;
+  }
+}
