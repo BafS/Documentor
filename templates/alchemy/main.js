@@ -197,6 +197,10 @@ const showPageFromCurrentHash = () => {
   toggleActiveLinkSidebar(index);
 };
 
+if (document.body.clientWidth < 768) {
+  toggleClass(main, 'full-width');
+}
+
 // Listen for hash change
 window.onhashchange = () => {
   showPageFromCurrentHash();

@@ -5,6 +5,7 @@ homepageUrl: https://github.com/BafS/Documentor
 logo: _assets/logo.png
 icon: _assets/icon.png
 # footer: Your footer
+# You can use a pre-made template ("alchemy" is the default one) or use a relative path to your own template
 # template: basic
 # template: ./testtemp
 htmlHeader:
