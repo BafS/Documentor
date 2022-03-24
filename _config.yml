@@ -1,0 +1,15 @@
+name: Documentor
+version: 0.1.x
+sourceUrl: https://github.com/BafS/Documentor
+homepageUrl: https://github.com/BafS/Documentor
+logo: _assets/logo.png
+icon: _assets/icon.png
+# footer: Your footer
+# You can use a pre-made template ("alchemy" is the default one) or use a relative path to your own template
+# template: basic
+# template: ./testtemp
+htmlHeader:
+  - <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.0.3/styles/default.min.css">
+htmlBody:
+  - <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.0.3/highlight.min.js"></script>
+  - <script>hljs.initHighlightingOnLoad();</script>
