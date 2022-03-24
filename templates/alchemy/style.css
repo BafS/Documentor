@@ -3,6 +3,18 @@
 :root {
   --mainColor: #373f52;
   --secondaryColor: #d5dae6;
+  --mainBackgroundColor: #fff;
+  --sidebarMainColor: #d5dae6;
+  --sidebarBackgroundColor: #373f52;
+  --sidebarSearchBackgroundColor: #40495f;
+}
+.dark {
+  --mainColor: #d5dae6;
+  --secondaryColor: #373f52;
+  --mainBackgroundColor: #2b3140;
+  --sidebarMainColor: #d5dae6;
+  --sidebarBackgroundColor: #373f52;
+  --sidebarSearchBackgroundColor: #40495f;
 }
 *, :after, :before {
   box-sizing: inherit;
@@ -33,6 +45,7 @@ hr {
   -ms-flex-pack: end;
   justify-content: flex-end;
   min-height: 100%;
+  background-color: var(--mainBackgroundColor);
 }
 .sidebar {
   display: flex;
@@ -50,8 +63,8 @@ hr {
   z-index: 4;
   font-size: 15px;
   line-height: 18px;
-  background: var(--mainColor);
-  color: var(--secondaryColor);
+  background: var(--sidebarBackgroundColor);
+  color: var(--sidebarMainColor);
   overflow: hidden;
   transition: transform ease-in-out .25s;
 }
@@ -80,7 +93,7 @@ hr {
   white-space: nowrap;
   overflow: hidden;
   width: 100%;
-  color: var(--secondaryColor);
+  color: var(--sidebarMainColor);
   padding: 0 14px;
   height: 40px;
   line-height: 40px;
@@ -99,7 +112,7 @@ hr {
   background: rgba(255, 255, 255, .08);
 }
 .sidebar .header a {
-  color: var(--secondaryColor);
+  color: var(--sidebarSecondaryColor);
   text-decoration: none;
 }
 .sidebar .header {
@@ -118,8 +131,8 @@ hr {
 
 .sidebar .search-input {
   font-family: Lato, sans-serif;
-  color: var(--secondaryColor);
-  background-color: color(var(--mainColor) lightness(21%));
+  color: var(--sidebarMainColor);
+  background-color: var(--sidebarSearchBackgroundColor);
   border: 0;
   padding: 14px;
   font-size: 15px;
@@ -132,7 +145,7 @@ hr {
 }
 
 .sidebar .search-input:hover {
-  background-color: color(var(--mainColor) lightness(20%));
+  filter: brightness(.75);
 }
 
 .sidebar .search-input:focus {
@@ -162,6 +175,7 @@ hr {
   padding: 0 2rem;
   transition: margin ease-in-out .25s;
   will-change: margin-left;
+  color: var(--mainColor);
 }
 
 .content h1,.content h2,.content h3,.content h4,.content h5,.content h6 {
@@ -172,14 +186,14 @@ hr {
 }
 
 .content h1 {font-size:2em; margin:1em 0 .5em}
-.content h1.heading {color: #666; margin: 1.25em 0 .5em}
+.content h1.heading {color: var(--mainColor); opacity: .8; margin: 1.25em 0 .5em}
 .content h1 small {font-weight:300}
 .content h1 a.view-source {font-size:1.2rem}
 .content h2 {font-size:1.6em;margin:1em 0 .5em;font-weight:700}
 .content h3 {font-size:1.3em; margin:1em 0 .5em; font-weight:700}
-.content .page a {color:#000;}
+.content .page a {color: var(--mainColor)}
 .content a *,.content a :after,.content a :before,.content a:after,.content a:before {text-shadow:none}
-.content a:visited {color:#000}
+.content a:visited {color: var(--mainColor)}
 .content ul li {line-height:1.5em}
 .content ul li>p {margin:0}
 .content blockquote {font-style:italic;margin:.5em 0;padding:.25em 1.5em;border-left:3px solid #e1e1e1;display:inline-block}
@@ -187,7 +201,7 @@ hr {
 .content blockquote :last-child {padding-bottom:0;margin-bottom:0}
 .content a.no-underline,.content pre a {color:#9768d1;text-shadow:none;text-decoration:none;background-image:none}
 .content a.no-underline:active,.content a.no-underline:focus,.content a.no-underline:hover,.content a.no-underline:visited,.content pre a:active,.content pre a:focus,.content pre a:hover,.content pre a:visited {color:#9768d1;text-decoration:none}
-.content code {font-weight:400;background-color:#f7f9fc;vertical-align:baseline;border-radius:2px;padding:.1em .2em;border:1px solid #d2ddee}
+.content code {color: #373f52; font-weight:400;background-color:#f7f9fc;vertical-align:baseline;border-radius:2px;padding:.1em .2em;border:1px solid #d2ddee}
 .content pre {margin:1.5em 0; line-height: 1.5em}
 .content img {max-width: 100%}
 
@@ -279,23 +293,6 @@ hr {
   -webkit-transform: rotate(135deg);
           transform: rotate(135deg);
 }
-
-.main.dark {
-  background: color(var(--mainColor) lightness(15%));
-}
-
-.dark .content {
-  color: var(--secondaryColor);
-}
-
-.dark .content code {
-  background-color: color(var(--mainColor) lightness(20%));
-}
-
-.dark .tools button, .dark .tools button .icon {
-  color: var(--secondaryColor);
-}
-
 
 .content .highlight {
   background: rgb(255, 252, 53, .5);
